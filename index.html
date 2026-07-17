@@ -155,16 +155,16 @@
         }
 
         .tabs-container {
-    display: flex;
-    justify-content: flex-start; /* Đổi từ 'center' thành 'flex-start' để không bị lẹm bên trái */
-    align-items: center;
-    gap: 10px;
-    max-width: 1200px;
-    margin: 0 auto;
-    overflow-x: auto;
-    padding: 10px 15px; /* Tăng padding để có khoảng thở cho nút bấm */
-    scrollbar-width: none;
-}
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            gap: 10px;
+            max-width: 1200px;
+            margin: 0 auto;
+            overflow-x: auto;
+            padding: 10px 15px;
+            scrollbar-width: none;
+        }
 
         .tabs-container::-webkit-scrollbar {
             display: none;
@@ -390,8 +390,7 @@
             margin-bottom: 1rem;
         }
 
-        /* --- MODAL ĐẶT MUA --- */
-        /* --- MODAL ĐẶT MUA --- */
+        /* --- MODAL ĐẶT MUA (THIẾT KẾ MỚI TỐI ƯU KHÔNG CUỘN) --- */
         .modal {
             display: none;
             position: fixed;
@@ -402,19 +401,15 @@
             height: 100%;
             background-color: rgba(15, 23, 42, 0.7);
             backdrop-filter: blur(5px);
-            overflow-y: auto; /* Thêm dòng này để cho phép cuộn toàn màn hình nếu cần */
         }
 
         .modal-content {
             background-color: white;
-            margin: 40px auto; /* Sửa lại margin để cách mí trên/dưới cố định */
+            margin: 6vh auto;
             padding: 2rem;
             border-radius: var(--radius-card);
             width: 90%;
-            max-width: 450px;
-            max-height: 85vh; /* Giới hạn chiều cao tối đa bằng 85% màn hình */
-            overflow-y: auto; /* Tự động xuất hiện thanh cuộn dọc khi nội dung bị dài */
-            text-align: center;
+            max-width: 650px;
             position: relative;
             animation: slideDown 0.3s cubic-bezier(0.16, 1, 0.3, 1);
             box-shadow: 0 20px 50px rgba(0,0,0,0.3);
@@ -428,29 +423,100 @@
             color: #94a3b8;
             cursor: pointer;
             transition: color 0.2s;
+            z-index: 10;
         }
 
         .close-modal:hover {
             color: #0f172a;
         }
 
-        .qr-box img {
-            max-width: 160px; /* Thu nhỏ từ 200px xuống 160px để tiết kiệm chiều cao */
+        .modal-header {
+            text-align: center;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #f1f5f9;
+        }
+
+        .modal-header h3 {
+            color: var(--primary-blue);
+            font-size: 1.4rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+        }
+
+        .modal-header #modalDocName {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: #334155;
+            line-height: 1.4;
+        }
+
+        .modal-body {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        /* Cột bên trái: QR & Giá */
+        .modal-qr-section {
+            flex: 1;
+            text-align: center;
+            background: #f8fafc;
+            padding: 1.2rem;
+            border-radius: 16px;
+            border: 1px dashed #cbd5e1;
+        }
+
+        .modal-qr-section img {
+            max-width: 170px;
             border-radius: 12px;
-            margin: 0.8rem 0;
-            border: 2px solid #e2e8f0;
             box-shadow: 0 4px 10px rgba(0,0,0,0.05);
         }
 
-        .instructions {
+        .modal-price-tag {
+            color: #16a34a;
+            font-weight: 800;
+            font-size: 1.3rem;
+            margin-top: 12px;
+            display: inline-block;
+            background: #f0fdf4;
+            padding: 4px 16px;
+            border-radius: 50px;
+        }
+
+        /* Cột bên phải: Hướng dẫn */
+        .modal-instructions {
+            flex: 1.3;
             text-align: left;
-            background: #f8fafc;
-            padding: 1.2rem;
-            border-radius: 12px;
-            margin-top: 1rem;
+        }
+
+        .step-item {
+            margin-bottom: 1.2rem;
             font-size: 0.95rem;
-            border: 1px solid #e2e8f0;
-            line-height: 1.6;
+            color: #475569;
+            line-height: 1.5;
+        }
+
+        .step-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .step-item strong {
+            color: #0f172a;
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .syntax-box {
+            display: inline-block;
+            margin-top: 6px;
+            background: #eff6ff;
+            padding: 8px 16px;
+            border-radius: 8px;
+            color: #2563eb;
+            font-weight: 700;
+            font-size: 1.05rem;
+            border: 1px solid #bfdbfe;
         }
 
         footer {
@@ -485,113 +551,121 @@
             header { padding: 2rem 1rem 3rem; }
             .brand-logo { font-size: 1.7rem; }
             .grid-container { grid-template-columns: 1fr; }
-            .tabs-container { justify-content: flex-start; }
-            .modal-content { margin: 15% auto; padding: 1.5rem; }
         }
+
+        @media (max-width: 650px) {
+            .modal-body {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+            .modal-content {
+                max-height: 90vh;
+                overflow-y: auto; /* Bật thanh cuộn trên điện thoại nếu cần */
+                padding: 1.5rem;
+                margin: 5% auto;
+            }
+            .modal-instructions {
+                width: 100%;
+            }
+        }
+
         /* --- NÚT LIÊN HỆ ZALO GÓC PHẢI DƯỚI --- */
-.floating-contact {
-    position: fixed;
-    bottom: 30px;
-    right: 30px;
-    background-color: #0068ff; /* Màu xanh chuẩn của Zalo */
-    color: white;
-    padding: 12px 20px;
-    border-radius: 50px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    font-weight: 700;
-    font-size: 1rem;
-    text-decoration: none;
-    box-shadow: 0 4px 15px rgba(0, 104, 255, 0.4);
-    z-index: 999; /* Đảm bảo nút luôn nổi lên trên cùng */
-    transition: all 0.3s ease;
-    animation: bounce 2s infinite;
-}
+        .floating-contact {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: #0068ff; 
+            color: white;
+            padding: 12px 20px;
+            border-radius: 50px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 700;
+            font-size: 1rem;
+            text-decoration: none;
+            box-shadow: 0 4px 15px rgba(0, 104, 255, 0.4);
+            z-index: 999;
+            transition: all 0.3s ease;
+            animation: bounce 2s infinite;
+        }
 
-.floating-contact:hover {
-    background-color: #0055d4;
-    transform: translateY(-5px) scale(1.05);
-    box-shadow: 0 8px 25px rgba(0, 104, 255, 0.6);
-    color: white;
-}
+        .floating-contact:hover {
+            background-color: #0055d4;
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 8px 25px rgba(0, 104, 255, 0.6);
+            color: white;
+        }
 
-.floating-contact img {
-    width: 24px;
-    height: 24px;
-    background-color: white;
-    border-radius: 50%;
-    padding: 2px;
-}
+        .floating-contact img {
+            width: 24px;
+            height: 24px;
+            background-color: white;
+            border-radius: 50%;
+            padding: 2px;
+        }
 
-/* Hiệu ứng nhún nhảy */
-@keyframes bounce {
-    0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
-    40% { transform: translateY(-10px); }
-    60% { transform: translateY(-5px); }
-}
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
 
-/* Điều chỉnh lại vị trí trên điện thoại cho đỡ vướng */
-@media (max-width: 768px) {
-    .floating-contact {
-        bottom: 20px;
-        right: 20px;
-        padding: 10px 16px;
-        font-size: 0.9rem;
-    }
-}
-        /* --- NÚT GỌI ĐIỆN THOẠI GÓC PHẢI DƯỚI (NẰM TRÊN ZALO) --- */
-.floating-phone {
-    position: fixed;
-    bottom: 100px; /* Đặt cao hơn nút Zalo (Zalo đang là 30px) */
-    right: 30px;
-    background-color: #ef4444; /* Màu đỏ nổi bật */
-    color: white;
-    padding: 12px 20px;
-    border-radius: 50px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    font-weight: 700;
-    font-size: 1rem;
-    text-decoration: none;
-    box-shadow: 0 4px 15px rgba(239, 68, 68, 0.4);
-    z-index: 999;
-    transition: all 0.3s ease;
-}
+        /* --- NÚT SĐT GÓC PHẢI DƯỚI (Chỉ hiển thị, không link) --- */
+        .floating-phone {
+            position: fixed;
+            bottom: 100px;
+            right: 30px;
+            background-color: #ef4444; 
+            color: white;
+            padding: 12px 20px;
+            border-radius: 50px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 700;
+            font-size: 1rem;
+            box-shadow: 0 4px 15px rgba(239, 68, 68, 0.4);
+            z-index: 999;
+            transition: all 0.3s ease;
+            cursor: default; /* Bỏ biểu tượng bàn tay khi di chuột vào */
+        }
 
-.floating-phone:hover {
-    background-color: #dc2626;
-    transform: translateY(-5px) scale(1.05);
-    box-shadow: 0 8px 25px rgba(239, 68, 68, 0.6);
-    color: white;
-}
+        .floating-phone:hover {
+            background-color: #dc2626;
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 8px 25px rgba(239, 68, 68, 0.6);
+        }
 
-.floating-phone i {
-    font-size: 1.2rem;
-    animation: ring 1.5s infinite ease-in-out; /* Hiệu ứng rung chuông */
-}
+        .floating-phone i {
+            font-size: 1.2rem;
+            animation: ring 1.5s infinite ease-in-out;
+        }
 
-/* Hiệu ứng rung cho icon điện thoại */
-@keyframes ring {
-    0% { transform: rotate(0); }
-    10% { transform: rotate(15deg); }
-    20% { transform: rotate(-15deg); }
-    30% { transform: rotate(15deg); }
-    40% { transform: rotate(-15deg); }
-    50% { transform: rotate(0); }
-    100% { transform: rotate(0); }
-}
+        @keyframes ring {
+            0% { transform: rotate(0); }
+            10% { transform: rotate(15deg); }
+            20% { transform: rotate(-15deg); }
+            30% { transform: rotate(15deg); }
+            40% { transform: rotate(-15deg); }
+            50% { transform: rotate(0); }
+            100% { transform: rotate(0); }
+        }
 
-/* Điều chỉnh lại vị trí trên điện thoại */
-@media (max-width: 768px) {
-    .floating-phone {
-        bottom: 80px; /* Đặt cao hơn nút Zalo trên mobile */
-        right: 20px;
-        padding: 10px 16px;
-        font-size: 0.9rem;
-    }
-}
+        @media (max-width: 768px) {
+            .floating-contact {
+                bottom: 20px;
+                right: 20px;
+                padding: 10px 16px;
+                font-size: 0.9rem;
+            }
+            .floating-phone {
+                bottom: 80px; 
+                right: 20px;
+                padding: 10px 16px;
+                font-size: 0.9rem;
+            }
+        }
     </style>
 </head>
 <body>
@@ -1410,26 +1484,41 @@
         </div>
     </main>
 
-    <!-- ORDER MODAL -->
+    <!-- ORDER MODAL (THIẾT KẾ 2 CỘT MỚI) -->
     <div id="orderModal" class="modal">
         <div class="modal-content">
             <span class="close-modal" onclick="closeOrderModal()">&times;</span>
-            <h3 style="color: var(--primary-blue); font-size: 1.4rem; margin-bottom: 0.8rem;">ĐẶT MUA TÀI LIỆU</h3>
             
-            <p style="font-size: 1.05rem; font-weight: 700; color: #334155; margin-bottom: 0.5rem;" id="modalDocName"></p>
-            <p style="color: #16a34a; font-weight: 800; font-size: 1.3rem;">Giá: <span id="modalDocPrice"></span></p>
-            
-            <div class="qr-box">
-                <img src="my_qr_hihi.jpg" alt="Mã QR Thanh Toán">
+            <div class="modal-header">
+                <h3>ĐẶT MUA TÀI LIỆU</h3>
+                <p id="modalDocName"></p>
             </div>
             
-            <div class="instructions">
-                <p><strong>Bước 1:</strong> Quét mã QR để thanh toán.</p>
-                <p><strong>Bước 2:</strong> Vui lòng nhập nội dung chuyển khoản theo cú pháp: <br>
-                    <code style="display:inline-block; margin-top:6px; background: #e2e8f0; padding: 6px 12px; border-radius: 6px; color: #b45309; font-weight: 700; font-size: 1rem;"><span id="modalTransferSyntax"></span> + SĐT của bạn</code>
-                </p>
-                <p style="margin-top: 10px;"><strong>Bước 3:</strong> Nhắn tin Zalo: <strong style="color: #2563eb; font-size: 1.15rem;">0843 589 647</strong> kèm ảnh chụp màn hình để nhận quyền truy cập vào tài liệu.</p>
+            <div class="modal-body">
+                <!-- CỘT TRÁI: QR & GIÁ -->
+                <div class="modal-qr-section">
+                    <img src="my_qr_hihi.jpg" alt="Mã QR Thanh Toán">
+                    <div class="modal-price-tag"><span id="modalDocPrice"></span></div>
+                </div>
+                
+                <!-- CỘT PHẢI: HƯỚNG DẪN -->
+                <div class="modal-instructions">
+                    <div class="step-item">
+                        <strong>Bước 1: Quét mã thanh toán</strong>
+                        Mở ứng dụng ngân hàng và quét mã QR bên cạnh.
+                    </div>
+                    <div class="step-item">
+                        <strong>Bước 2: Nhập nội dung chuyển khoản</strong>
+                        Vui lòng nhập chính xác cú pháp sau:
+                        <div class="syntax-box"><span id="modalTransferSyntax"></span> + SĐT của bạn</div>
+                    </div>
+                    <div class="step-item">
+                        <strong>Bước 3: Nhận tài liệu</strong>
+                        Nhắn tin Zalo số <strong style="display:inline; color:#2563eb; font-size:1.1rem;">0843 589 647</strong> kèm ảnh chụp màn hình để nhận quyền truy cập Drive.
+                    </div>
+                </div>
             </div>
+            
         </div>
     </div>
 
@@ -1443,16 +1532,13 @@
     <script>
         // SWITCH CATEGORY FUNCTION
         function switchCategory(catId, btnElement) {
-            // Update Active Tab Button Styling
             document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
             if(btnElement) btnElement.classList.add('active');
 
-            // Scroll active tab to center of tab container
             if(btnElement) {
                 btnElement.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
             }
 
-            // Show/Hide Sections
             const sections = document.querySelectorAll('.category-content');
             sections.forEach(sec => {
                 if (sec.getAttribute('data-cat') === catId) {
@@ -1464,11 +1550,9 @@
                 }
             });
 
-            // Scroll active section to center/top smoothly
             const mainContainer = document.getElementById('mainContainer');
             mainContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
 
-            // Re-apply search filter if user typed something
             filterMaterials();
         }
 
@@ -1482,7 +1566,6 @@
                 const title = card.getAttribute('data-title') || '';
                 const code = card.getAttribute('data-code') || '';
                 const parentSection = card.closest('.category-content');
-
                 const isSectionVisible = window.getComputedStyle(parentSection).display !== 'none';
 
                 if (isSectionVisible && (title.includes(query) || code.includes(query))) {
@@ -1515,22 +1598,23 @@
             modal.style.display = "none";
         }
 
-        // Click ra ngoài để đóng popup
         window.onclick = function(event) {
             if (event.target == modal) {
                 modal.style.display = "none";
             }
         }
     </script>
+    
     <!-- NÚT LIÊN HỆ ZALO -->
-<a href="https://zalo.me/0843589647" target="_blank" class="floating-contact">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/9/91/Icon_of_Zalo.svg" alt="Zalo">
-    <span>Liên hệ mua ngay</span>
-</a>
-    <!-- NÚT GỌI ĐIỆN THOẠI -->
-<a href="tel:0843589647" class="floating-phone">
-    <i class="fa-solid fa-phone-volume"></i>
-    <span>0843 589 647</span>
-</a>
+    <a href="https://zalo.me/0843589647" target="_blank" class="floating-contact">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/9/91/Icon_of_Zalo.svg" alt="Zalo">
+        <span>Liên hệ mua ngay</span>
+    </a>
+    
+    <!-- NÚT GỌI ĐIỆN THOẠI (Chỉ hiển thị, không gắn link) -->
+    <div class="floating-phone">
+        <i class="fa-solid fa-phone-volume"></i>
+        <span>0843 589 647</span>
+    </div>
 </body>
 </html>
