@@ -1550,8 +1550,9 @@
                 }
             });
 
-            const mainContainer = document.getElementById('mainContainer');
-            mainContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            // Cuộn thanh tab lên sát mép trên cùng của màn hình
+            const navWrapper = document.querySelector('.nav-wrapper');
+            navWrapper.scrollIntoView({ behavior: 'smooth', block: 'start' });
 
             filterMaterials();
         }
