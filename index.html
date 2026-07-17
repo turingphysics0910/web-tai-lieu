@@ -1557,27 +1557,44 @@
         }
 
         // SEARCH FILTER FUNCTION
+        // SEARCH FILTER FUNCTION (TÌM KIẾM TOÀN CỤC)
         function filterMaterials() {
             const query = document.getElementById('searchInput').value.toLowerCase().trim();
-            const cards = document.querySelectorAll('.card');
-            let visibleCount = 0;
+            const sections = document.querySelectorAll('.category-content');
+            let totalVisibleCount = 0;
 
-            cards.forEach(card => {
-                const title = card.getAttribute('data-title') || '';
-                const code = card.getAttribute('data-code') || '';
-                const parentSection = card.closest('.category-content');
-                const isSectionVisible = window.getComputedStyle(parentSection).display !== 'none';
+            sections.forEach(sec => {
+                const cards = sec.querySelectorAll('.card');
+                let sectionVisibleCards = 0;
 
-                if (isSectionVisible && (title.includes(query) || code.includes(query))) {
-                    card.style.display = 'flex';
-                    visibleCount++;
+                // Quét toàn bộ tài liệu trong từng section
+                cards.forEach(card => {
+                    const title = card.getAttribute('data-title') || '';
+                    const code = card.getAttribute('data-code') || '';
+                    
+                    // Nếu khớp từ khóa thì hiển thị thẻ đó lên
+                    if (title.includes(query) || code.includes(query)) {
+                        card.style.display = 'flex';
+                        sectionVisibleCards++;
+                        totalVisibleCount++;
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+
+                // Xử lý hiển thị các danh mục (Khối 10, Khối 11...)
+                if (query.length > 0) {
+                    // Đang tìm kiếm: Mục nào có tài liệu thì mới cho hiện
+                    sec.style.display = sectionVisibleCards > 0 ? 'block' : 'none';
                 } else {
-                    card.style.display = 'none';
+                    // Không tìm kiếm (xóa trắng ô search): Trả về đúng tab đang active ban đầu
+                    sec.style.display = sec.classList.contains('active') ? 'block' : 'none';
                 }
             });
 
+            // Nếu không có bất kỳ tài liệu nào khớp ở tất cả các khối
             const noResults = document.getElementById('noResults');
-            if (visibleCount === 0) {
+            if (totalVisibleCount === 0) {
                 noResults.style.display = 'block';
             } else {
                 noResults.style.display = 'none';
