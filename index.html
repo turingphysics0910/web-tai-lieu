@@ -22,9 +22,6 @@
             --text-main: #0f172a;
             --text-muted: #64748b;
             --radius-pill: 50px;
-            --radius-card: 20px;
-            --shadow-soft: 0 10px 30px -10px rgba(37, 99, 235, 0.15);
-            --shadow-hover: 0 20px 35px -10px rgba(37, 99, 235, 0.3);
         }
 
         * {
@@ -77,7 +74,8 @@
         }
 
         .brand-logo {
-            display: inline-flex;
+            display: flex;
+            justify-content: center;
             align-items: center;
             gap: 12px;
             font-size: 2.2rem;
@@ -90,10 +88,20 @@
             margin-bottom: 0.8rem;
         }
 
+        .brand-logo .avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid white;
+            box-shadow: 0 0 10px rgba(96, 165, 250, 0.5);
+        }
+
         .brand-logo i {
             -webkit-text-fill-color: initial;
             color: var(--glow-blue);
             filter: drop-shadow(0 0 10px rgba(96, 165, 250, 0.6));
+            font-size: 1.8rem;
         }
 
         .hero-subtitle {
@@ -142,7 +150,7 @@
             font-size: 1.2rem;
         }
 
-        /* --- TAB NAVIGATION (ROUNDED PILLS) --- */
+        /* --- TAB NAVIGATION --- */
         .nav-wrapper {
             position: sticky;
             top: 0;
@@ -152,6 +160,7 @@
             padding: 1.2rem 1rem;
             border-bottom: 1px solid #e2e8f0;
             box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+            transition: all 0.3s ease;
         }
 
         .tabs-container {
@@ -204,7 +213,7 @@
         /* --- MAIN CONTENT & CONTAINER --- */
         main {
             flex: 1;
-            max-width: 1200px;
+            max-width: 1000px;
             width: 100%;
             margin: 2.5rem auto;
             padding: 0 1.5rem;
@@ -212,7 +221,7 @@
 
         .section-header {
             text-align: center;
-            margin-bottom: 2.5rem;
+            margin-bottom: 2rem;
             animation: fadeIn 0.5s ease;
         }
 
@@ -235,14 +244,8 @@
             border-radius: 2px;
         }
 
-        .section-header p {
-            color: var(--text-muted);
-            font-size: 0.95rem;
-        }
-
-        /* --- GRID LAYOUT --- */
         .category-content {
-            display: block;
+            display: none;
         }
 
         .category-content.active {
@@ -250,122 +253,119 @@
             animation: slideUp 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
-        .grid-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-            gap: 1.8rem;
-            justify-content: center;
-        }
-
-        /* --- CARD STYLE --- */
-        .card {
-            background: var(--card-bg);
-            border-radius: var(--radius-card);
-            border: 1px solid #e2e8f0;
-            padding: 1.6rem;
+        /* --- LIST LAYOUT (3 COLUMNS) --- */
+        .doc-list {
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
-            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-            position: relative;
-            box-shadow: var(--shadow-soft);
+            gap: 1rem;
         }
 
-        .card:hover {
-            transform: translateY(-6px);
-            box-shadow: var(--shadow-hover);
-            border-color: #bfdbfe;
-        }
-
-        .card-top {
-            display: flex;
-            justify-content: space-between;
+        .doc-item {
+            display: grid;
+            grid-template-columns: 80px 1fr 220px;
             align-items: center;
-            margin-bottom: 1rem;
-        }
-
-        .badge-code {
-            background: #eff6ff;
-            color: var(--primary-accent);
-            font-weight: 700;
-            font-size: 0.8rem;
-            padding: 0.35rem 0.8rem;
-            border-radius: var(--radius-pill);
-            border: 1px solid #dbeafe;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .badge-price {
-            background: #f0fdf4;
-            color: #16a34a;
-            font-weight: 700;
-            font-size: 0.9rem;
-            padding: 0.35rem 0.8rem;
-            border-radius: var(--radius-pill);
-            border: 1px solid #bbf7d0;
-        }
-
-        .card-title {
-            font-size: 1.05rem;
-            font-weight: 700;
-            color: var(--text-main);
-            line-height: 1.5;
-            margin-bottom: 1.5rem;
-            flex-grow: 1;
-        }
-
-        .card-actions {
-            display: flex;
-            gap: 10px;
-        }
-
-        .btn-drive {
-            flex: 1;
-            background: linear-gradient(135deg, var(--primary-accent), var(--primary-blue));
-            color: white;
-            text-decoration: none;
-            padding: 0.8rem 1rem;
-            border-radius: 12px;
-            font-weight: 600;
-            font-size: 0.9rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            transition: all 0.25s ease;
-            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
-        }
-
-        .btn-drive:hover {
-            filter: brightness(1.1);
-            box-shadow: 0 6px 16px rgba(37, 99, 235, 0.35);
-        }
-
-        .btn-copy {
-            background: #f1f5f9;
-            color: #475569;
-            border: none;
-            width: 42px;
-            height: 42px;
-            border-radius: 12px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1rem;
+            gap: 1.5rem;
+            background: var(--card-bg);
+            padding: 1.2rem 1.5rem;
+            border-radius: 16px;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
             transition: all 0.2s ease;
         }
 
-        .btn-copy:hover {
+        .doc-item:hover {
+            box-shadow: 0 10px 30px rgba(37, 99, 235, 0.1);
+            transform: translateY(-3px);
+            border-color: #bfdbfe;
+        }
+
+        .doc-item.pending {
+            opacity: 0.7;
+            background: #f8fafc;
+        }
+
+        .doc-id .badge {
+            background: #eff6ff;
+            color: var(--primary-accent);
+            font-weight: 700;
+            padding: 6px 12px;
+            border-radius: 8px;
+            border: 1px solid #dbeafe;
+            font-size: 0.95rem;
+            text-align: center;
+            display: inline-block;
+            width: 100%;
+        }
+
+        .doc-info {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .doc-title {
+            font-weight: 700;
+            font-size: 1.05rem;
+            color: var(--text-main);
+            line-height: 1.4;
+        }
+
+        .doc-price {
+            color: #16a34a;
+            font-weight: 700;
+            font-size: 0.95rem;
+        }
+
+        .doc-actions {
+            display: flex;
+            gap: 10px;
+            justify-content: flex-end;
+        }
+
+        .btn-preview {
+            background: #f1f5f9;
+            color: #475569;
+            padding: 10px 16px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .btn-preview:hover {
             background: #e2e8f0;
             color: var(--primary-blue);
         }
 
-        .card.pending {
-            opacity: 0.8;
-            border-style: dashed;
-            background: #fafafa;
+        .btn-buy {
+            background: linear-gradient(135deg, var(--primary-accent), var(--primary-blue));
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.2s;
+            font-size: 0.9rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            box-shadow: 0 4px 10px rgba(37, 99, 235, 0.2);
+        }
+
+        .btn-buy:hover {
+            filter: brightness(1.1);
+            box-shadow: 0 6px 15px rgba(37, 99, 235, 0.3);
+        }
+
+        .btn-disabled {
+            background: #cbd5e1;
+            color: white;
+            cursor: not-allowed;
         }
 
         .no-results {
@@ -381,6 +381,47 @@
             margin-bottom: 1rem;
         }
 
+        /* --- PAYMENT MODAL --- */
+        .modal-overlay {
+            position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(15, 23, 42, 0.75);
+            backdrop-filter: blur(5px);
+            z-index: 1000;
+            display: none;
+            justify-content: center; align-items: center;
+            opacity: 0; transition: opacity 0.3s ease;
+        }
+
+        .modal-overlay.show { opacity: 1; }
+
+        .modal-content {
+            background: white; width: 90%; max-width: 420px;
+            border-radius: 20px; padding: 2rem 1.5rem; position: relative;
+            transform: translateY(20px) scale(0.95); transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            text-align: center;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+
+        .modal-overlay.show .modal-content { transform: translateY(0) scale(1); }
+
+        .modal-close {
+            position: absolute; top: 12px; right: 15px;
+            background: none; border: none; font-size: 1.5rem; color: #94a3b8;
+            cursor: pointer; transition: 0.2s;
+        }
+        
+        .modal-close:hover { color: #0f172a; }
+
+        .modal-title { font-size: 1.3rem; font-weight: 800; color: var(--primary-blue); margin-bottom: 1rem; }
+        
+        .doc-summary { background: #f8fafc; padding: 12px; border-radius: 12px; border: 1px dashed #cbd5e1; margin-bottom: 1.5rem; text-align: left; }
+        .doc-summary span { font-weight: 700; color: #0f172a; }
+        
+        .instruction-box { background: #eff6ff; padding: 1rem; border-radius: 12px; margin-bottom: 1.5rem; border: 1px solid #bfdbfe; font-size: 0.95rem; text-align: left; line-height: 1.5; color: #1e293b;}
+        .zalo-text { color: #dc2626; font-weight: 800; font-size: 1.2rem; display: block; margin-top: 8px; text-align: center;}
+        
+        .qr-image { width: 100%; max-width: 250px; border-radius: 16px; margin: 0 auto; box-shadow: 0 4px 15px rgba(0,0,0,0.1); border: 2px solid #e2e8f0; display: block;}
+
         footer {
             background: #0f172a;
             color: #94a3b8;
@@ -390,62 +431,30 @@
             border-top: 1px solid #1e293b;
         }
 
-        footer strong {
-            color: white;
-        }
+        footer strong { color: white; }
 
-        .toast {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            background: #0f172a;
-            color: white;
-            padding: 12px 24px;
-            border-radius: 50px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-size: 0.9rem;
-            transform: translateY(100px);
-            opacity: 0;
-            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-            z-index: 1000;
-            border: 1px solid #334155;
-        }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes slideUp { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
 
-        .toast.show {
-            transform: translateY(0);
-            opacity: 1;
-        }
-
-        .toast i {
-            color: #4ade80;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        @keyframes slideUp {
-            from { opacity: 0; transform: translateY(15px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
+        /* --- RESPONSIVE MOBILE --- */
         @media (max-width: 768px) {
-            header {
-                padding: 2rem 1rem 3rem;
-            }
-            .brand-logo {
-                font-size: 1.7rem;
-            }
-            .grid-container {
+            header { padding: 2rem 1rem 3rem; }
+            .brand-logo { font-size: 1.6rem; }
+            .brand-logo .avatar { width: 40px; height: 40px; }
+            
+            .tabs-container { justify-content: flex-start; }
+            
+            .doc-item {
                 grid-template-columns: 1fr;
+                gap: 12px;
+                padding: 1.2rem;
             }
-            .tabs-container {
-                justify-content: flex-start;
-            }
+            
+            .doc-id { display: flex; justify-content: space-between; align-items: center; }
+            .doc-id .badge { width: auto; }
+            
+            .doc-actions { width: 100%; display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 5px; }
+            .btn-preview, .btn-buy { width: 100%; justify-content: center; }
         }
     </style>
 </head>
@@ -455,42 +464,41 @@
     <header>
         <div class="header-content">
             <div class="brand-logo">
-                <i class="fa-solid fa-atom"></i> TURING PHYSICS
+                <img src="turing_hihi.jpg" alt="Avatar" class="avatar">
+                TURING PHYSICS 
+                <i class="fa-solid fa-atom"></i>
             </div>
             <p class="hero-subtitle">Hệ Thống Kho Tài Liệu Vật Lý High-End & Chuẩn Cấu Trúc THPTQG</p>
             
             <div class="search-box">
                 <i class="fa-solid fa-magnifying-glass"></i>
-                <input type="text" id="searchInput" placeholder="Tìm kiếm tài liệu, giáo viên (Thầy Nhân, Cô Nhung, Thầy Vũ Ngọc Anh...)" onkeyup="filterMaterials()">
+                <input type="text" id="searchInput" placeholder="Tìm kiếm tài liệu, giáo viên, từ khóa trên toàn hệ thống..." onkeyup="filterMaterials()">
             </div>
         </div>
     </header>
 
     <!-- ROUNDED PILL NAV BAR -->
-    <div class="nav-wrapper">
+    <div class="nav-wrapper" id="navWrapper">
         <div class="tabs-container" id="tabsContainer">
-            <button class="tab-btn active" onclick="switchCategory('all', this)">
-                <i class="fa-solid fa-layer-group"></i> Tất Cả
-            </button>
-            <button class="tab-btn" onclick="switchCategory('khoi-10', this)">
+            <button class="tab-btn active" data-target="khoi-10" onclick="switchCategory('khoi-10', this)">
                 <i class="fa-solid fa-graduation-cap"></i> Khối 10
             </button>
-            <button class="tab-btn" onclick="switchCategory('khoi-11', this)">
+            <button class="tab-btn" data-target="khoi-11" onclick="switchCategory('khoi-11', this)">
                 <i class="fa-solid fa-graduation-cap"></i> Khối 11
             </button>
-            <button class="tab-btn" onclick="switchCategory('khoi-12', this)">
+            <button class="tab-btn" data-target="khoi-12" onclick="switchCategory('khoi-12', this)">
                 <i class="fa-solid fa-graduation-cap"></i> Khối 12
             </button>
-            <button class="tab-btn" onclick="switchCategory('ly-thuyet', this)">
+            <button class="tab-btn" data-target="ly-thuyet" onclick="switchCategory('ly-thuyet', this)">
                 <i class="fa-solid fa-book-open"></i> Lý Thuyết
             </button>
-            <button class="tab-btn" onclick="switchCategory('mo-hinh-thuc-te', this)">
+            <button class="tab-btn" data-target="mo-hinh-thuc-te" onclick="switchCategory('mo-hinh-thuc-te', this)">
                 <i class="fa-solid fa-flask"></i> Mô Hình & Thực Tế
             </button>
-            <button class="tab-btn" onclick="switchCategory('tong-on-luyen-thi', this)">
+            <button class="tab-btn" data-target="tong-on-luyen-thi" onclick="switchCategory('tong-on-luyen-thi', this)">
                 <i class="fa-solid fa-award"></i> Tổng Ôn & Đề Thi
             </button>
-            <button class="tab-btn" onclick="switchCategory('powerpoint-giao-an', this)">
+            <button class="tab-btn" data-target="powerpoint-giao-an" onclick="switchCategory('powerpoint-giao-an', this)">
                 <i class="fa-solid fa-file-powerpoint"></i> PowerPoint & Giáo Án
             </button>
         </div>
@@ -500,116 +508,127 @@
     <main id="mainContainer">
 
         <!-- CATEGORY: DẠY THÊM KHỐI 10 -->
-        <div class="category-content" data-cat="khoi-10">
+        <div class="category-content active" data-cat="khoi-10">
             <div class="section-header">
                 <h2>DẠY THÊM KHỐI 10</h2>
-                <p>Danh sách các kho tài liệu chất lượng cao đã chọn lọc</p>
             </div>
-            <div class="grid-container">
+            <div class="doc-list">
 
-                <div class="card " data-title="dạy thêm vật lý khối 10 – thầy trần thi nhân" data-code="vl01">
-                    <div class="card-top">
-                        <span class="badge-code">VL01</span>
-                        <span class="badge-price">180.000đ</span>
+                <div class="doc-item " data-title="dạy thêm vật lý khối 10 – thầy trần thi nhân" data-code="vl01">
+                    <div class="doc-id">
+                        <span class="badge">VL01</span>
                     </div>
-                    <div class="card-title">DẠY THÊM VẬT LÝ KHỐI 10 – THẦY TRẦN THI NHÂN</div>
-                    <div class="card-actions">
+                    <div class="doc-info">
+                        <div class="doc-title">DẠY THÊM VẬT LÝ KHỐI 10 – THẦY TRẦN THI NHÂN</div>
+                        <div class="doc-price">Giá: 180.000đ</div>
+                    </div>
+                    <div class="doc-actions">
                         
-                <a href="https://drive.google.com/drive/folders/1xuzn_AFYMBVcKpU2OoEIv0H30U7UNPQt?usp=drive_link" target="_blank" class="btn-drive">
-                    <i class="fa-brands fa-google-drive"></i> Truy Cập Folder
+                <a href="https://drive.google.com/drive/folders/1xuzn_AFYMBVcKpU2OoEIv0H30U7UNPQt?usp=drive_link" target="_blank" class="btn-preview">
+                    <i class="fa-regular fa-eye"></i> Xem thử
                 </a>
-                <button class="btn-copy" onclick="copyLink('https://drive.google.com/drive/folders/1xuzn_AFYMBVcKpU2OoEIv0H30U7UNPQt?usp=drive_link')" title="Sao chép link Google Drive">
-                    <i class="fa-regular fa-copy"></i>
+                <button class="btn-buy" onclick="openBuyModal('VL01', 'DẠY THÊM VẬT LÝ KHỐI 10 – THẦY TRẦN THI NHÂN', '180.000đ')">
+                    <i class="fa-solid fa-cart-shopping"></i> Đặt mua
                 </button>
             
                     </div>
                 </div>
 
-                <div class="card " data-title="dạy thêm vật lý khối 10 – cô nhung cute" data-code="vl02">
-                    <div class="card-top">
-                        <span class="badge-code">VL02</span>
-                        <span class="badge-price">180.000đ</span>
+                <div class="doc-item " data-title="dạy thêm vật lý khối 10 – cô nhung cute" data-code="vl02">
+                    <div class="doc-id">
+                        <span class="badge">VL02</span>
                     </div>
-                    <div class="card-title">DẠY THÊM VẬT LÝ KHỐI 10 – CÔ NHUNG CUTE</div>
-                    <div class="card-actions">
+                    <div class="doc-info">
+                        <div class="doc-title">DẠY THÊM VẬT LÝ KHỐI 10 – CÔ NHUNG CUTE</div>
+                        <div class="doc-price">Giá: 180.000đ</div>
+                    </div>
+                    <div class="doc-actions">
                         
-                <a href="https://drive.google.com/drive/folders/1Zh1XsJDPFyqc288gKuA367KY6d4ulJP2?usp=drive_link" target="_blank" class="btn-drive">
-                    <i class="fa-brands fa-google-drive"></i> Truy Cập Folder
+                <a href="https://drive.google.com/drive/folders/1Zh1XsJDPFyqc288gKuA367KY6d4ulJP2?usp=drive_link" target="_blank" class="btn-preview">
+                    <i class="fa-regular fa-eye"></i> Xem thử
                 </a>
-                <button class="btn-copy" onclick="copyLink('https://drive.google.com/drive/folders/1Zh1XsJDPFyqc288gKuA367KY6d4ulJP2?usp=drive_link')" title="Sao chép link Google Drive">
-                    <i class="fa-regular fa-copy"></i>
+                <button class="btn-buy" onclick="openBuyModal('VL02', 'DẠY THÊM VẬT LÝ KHỐI 10 – CÔ NHUNG CUTE', '180.000đ')">
+                    <i class="fa-solid fa-cart-shopping"></i> Đặt mua
                 </button>
             
                     </div>
                 </div>
 
-                <div class="card " data-title="dạy thêm vật lý khối 10 – thầy hoàng sư điểu" data-code="vl03">
-                    <div class="card-top">
-                        <span class="badge-code">VL03</span>
-                        <span class="badge-price">180.000đ</span>
+                <div class="doc-item " data-title="dạy thêm vật lý khối 10 – thầy hoàng sư điểu" data-code="vl03">
+                    <div class="doc-id">
+                        <span class="badge">VL03</span>
                     </div>
-                    <div class="card-title">DẠY THÊM VẬT LÝ KHỐI 10 – THẦY HOÀNG SƯ ĐIỂU</div>
-                    <div class="card-actions">
+                    <div class="doc-info">
+                        <div class="doc-title">DẠY THÊM VẬT LÝ KHỐI 10 – THẦY HOÀNG SƯ ĐIỂU</div>
+                        <div class="doc-price">Giá: 180.000đ</div>
+                    </div>
+                    <div class="doc-actions">
                         
-                <a href="https://drive.google.com/drive/folders/1sg6YbPmPS6aZ6We0oeuuGEdWTB2Icn4g?usp=drive_link" target="_blank" class="btn-drive">
-                    <i class="fa-brands fa-google-drive"></i> Truy Cập Folder
+                <a href="https://drive.google.com/drive/folders/1sg6YbPmPS6aZ6We0oeuuGEdWTB2Icn4g?usp=drive_link" target="_blank" class="btn-preview">
+                    <i class="fa-regular fa-eye"></i> Xem thử
                 </a>
-                <button class="btn-copy" onclick="copyLink('https://drive.google.com/drive/folders/1sg6YbPmPS6aZ6We0oeuuGEdWTB2Icn4g?usp=drive_link')" title="Sao chép link Google Drive">
-                    <i class="fa-regular fa-copy"></i>
+                <button class="btn-buy" onclick="openBuyModal('VL03', 'DẠY THÊM VẬT LÝ KHỐI 10 – THẦY HOÀNG SƯ ĐIỂU', '180.000đ')">
+                    <i class="fa-solid fa-cart-shopping"></i> Đặt mua
                 </button>
             
                     </div>
                 </div>
 
-                <div class="card " data-title="dạy thêm vật lý khối 10 – website tài liệu chuẩn" data-code="vl04">
-                    <div class="card-top">
-                        <span class="badge-code">VL04</span>
-                        <span class="badge-price">180.000đ</span>
+                <div class="doc-item " data-title="dạy thêm vật lý khối 10 – website tài liệu chuẩn" data-code="vl04">
+                    <div class="doc-id">
+                        <span class="badge">VL04</span>
                     </div>
-                    <div class="card-title">DẠY THÊM VẬT LÝ KHỐI 10 – WEBSITE TÀI LIỆU CHUẨN</div>
-                    <div class="card-actions">
+                    <div class="doc-info">
+                        <div class="doc-title">DẠY THÊM VẬT LÝ KHỐI 10 – WEBSITE TÀI LIỆU CHUẨN</div>
+                        <div class="doc-price">Giá: 180.000đ</div>
+                    </div>
+                    <div class="doc-actions">
                         
-                <a href="https://drive.google.com/drive/folders/1EpnROhGtyYnrYEYKSmBisLpaJBNCf8r1?usp=drive_link" target="_blank" class="btn-drive">
-                    <i class="fa-brands fa-google-drive"></i> Truy Cập Folder
+                <a href="https://drive.google.com/drive/folders/1EpnROhGtyYnrYEYKSmBisLpaJBNCf8r1?usp=drive_link" target="_blank" class="btn-preview">
+                    <i class="fa-regular fa-eye"></i> Xem thử
                 </a>
-                <button class="btn-copy" onclick="copyLink('https://drive.google.com/drive/folders/1EpnROhGtyYnrYEYKSmBisLpaJBNCf8r1?usp=drive_link')" title="Sao chép link Google Drive">
-                    <i class="fa-regular fa-copy"></i>
+                <button class="btn-buy" onclick="openBuyModal('VL04', 'DẠY THÊM VẬT LÝ KHỐI 10 – WEBSITE TÀI LIỆU CHUẨN', '180.000đ')">
+                    <i class="fa-solid fa-cart-shopping"></i> Đặt mua
                 </button>
             
                     </div>
                 </div>
 
-                <div class="card " data-title="dạy thêm vật lý khối 10 – website thủ khoa đại học" data-code="vl05">
-                    <div class="card-top">
-                        <span class="badge-code">VL05</span>
-                        <span class="badge-price">180.000đ</span>
+                <div class="doc-item " data-title="dạy thêm vật lý khối 10 – website thủ khoa đại học" data-code="vl05">
+                    <div class="doc-id">
+                        <span class="badge">VL05</span>
                     </div>
-                    <div class="card-title">DẠY THÊM VẬT LÝ KHỐI 10 – WEBSITE THỦ KHOA ĐẠI HỌC</div>
-                    <div class="card-actions">
+                    <div class="doc-info">
+                        <div class="doc-title">DẠY THÊM VẬT LÝ KHỐI 10 – WEBSITE THỦ KHOA ĐẠI HỌC</div>
+                        <div class="doc-price">Giá: 180.000đ</div>
+                    </div>
+                    <div class="doc-actions">
                         
-                <a href="https://drive.google.com/drive/folders/1k7OxLyYwrMeYttpqj6Go85D8JYQwgL8a?usp=drive_link" target="_blank" class="btn-drive">
-                    <i class="fa-brands fa-google-drive"></i> Truy Cập Folder
+                <a href="https://drive.google.com/drive/folders/1k7OxLyYwrMeYttpqj6Go85D8JYQwgL8a?usp=drive_link" target="_blank" class="btn-preview">
+                    <i class="fa-regular fa-eye"></i> Xem thử
                 </a>
-                <button class="btn-copy" onclick="copyLink('https://drive.google.com/drive/folders/1k7OxLyYwrMeYttpqj6Go85D8JYQwgL8a?usp=drive_link')" title="Sao chép link Google Drive">
-                    <i class="fa-regular fa-copy"></i>
+                <button class="btn-buy" onclick="openBuyModal('VL05', 'DẠY THÊM VẬT LÝ KHỐI 10 – WEBSITE THỦ KHOA ĐẠI HỌC', '180.000đ')">
+                    <i class="fa-solid fa-cart-shopping"></i> Đặt mua
                 </button>
             
                     </div>
                 </div>
 
-                <div class="card " data-title="dạy thêm vật lý khối 10 – website tài liệu chuẩn 2027" data-code="vl2706">
-                    <div class="card-top">
-                        <span class="badge-code">VL2706</span>
-                        <span class="badge-price">220.000đ</span>
+                <div class="doc-item " data-title="dạy thêm vật lý khối 10 – website tài liệu chuẩn 2027" data-code="vl2706">
+                    <div class="doc-id">
+                        <span class="badge">VL2706</span>
                     </div>
-                    <div class="card-title">DẠY THÊM VẬT LÝ KHỐI 10 – WEBSITE TÀI LIỆU CHUẨN 2027</div>
-                    <div class="card-actions">
+                    <div class="doc-info">
+                        <div class="doc-title">DẠY THÊM VẬT LÝ KHỐI 10 – WEBSITE TÀI LIỆU CHUẨN 2027</div>
+                        <div class="doc-price">Giá: 220.000đ</div>
+                    </div>
+                    <div class="doc-actions">
                         
-                <a href="https://drive.google.com/drive/folders/1gL2fFCb1j1_N8XjpXo6VKqDCfYkSpM20?usp=drive_link" target="_blank" class="btn-drive">
-                    <i class="fa-brands fa-google-drive"></i> Truy Cập Folder
+                <a href="https://drive.google.com/drive/folders/1gL2fFCb1j1_N8XjpXo6VKqDCfYkSpM20?usp=drive_link" target="_blank" class="btn-preview">
+                    <i class="fa-regular fa-eye"></i> Xem thử
                 </a>
-                <button class="btn-copy" onclick="copyLink('https://drive.google.com/drive/folders/1gL2fFCb1j1_N8XjpXo6VKqDCfYkSpM20?usp=drive_link')" title="Sao chép link Google Drive">
-                    <i class="fa-regular fa-copy"></i>
+                <button class="btn-buy" onclick="openBuyModal('VL2706', 'DẠY THÊM VẬT LÝ KHỐI 10 – WEBSITE TÀI LIỆU CHUẨN 2027', '220.000đ')">
+                    <i class="fa-solid fa-cart-shopping"></i> Đặt mua
                 </button>
             
                     </div>
@@ -619,116 +638,127 @@
         </div>
 
         <!-- CATEGORY: DẠY THÊM KHỐI 11 -->
-        <div class="category-content" data-cat="khoi-11">
+        <div class="category-content " data-cat="khoi-11">
             <div class="section-header">
                 <h2>DẠY THÊM KHỐI 11</h2>
-                <p>Danh sách các kho tài liệu chất lượng cao đã chọn lọc</p>
             </div>
-            <div class="grid-container">
+            <div class="doc-list">
 
-                <div class="card " data-title="dạy thêm vật lý khối 11 – thầy trần thi nhân" data-code="vl01">
-                    <div class="card-top">
-                        <span class="badge-code">VL01</span>
-                        <span class="badge-price">180.000đ</span>
+                <div class="doc-item " data-title="dạy thêm vật lý khối 11 – thầy trần thi nhân" data-code="vl01">
+                    <div class="doc-id">
+                        <span class="badge">VL01</span>
                     </div>
-                    <div class="card-title">DẠY THÊM VẬT LÝ KHỐI 11 – THẦY TRẦN THI NHÂN</div>
-                    <div class="card-actions">
+                    <div class="doc-info">
+                        <div class="doc-title">DẠY THÊM VẬT LÝ KHỐI 11 – THẦY TRẦN THI NHÂN</div>
+                        <div class="doc-price">Giá: 180.000đ</div>
+                    </div>
+                    <div class="doc-actions">
                         
-                <a href="https://drive.google.com/drive/folders/16BIK5_ePoiP9wM3jQDMP-sDTtG0B-15Z?usp=drive_link" target="_blank" class="btn-drive">
-                    <i class="fa-brands fa-google-drive"></i> Truy Cập Folder
+                <a href="https://drive.google.com/drive/folders/16BIK5_ePoiP9wM3jQDMP-sDTtG0B-15Z?usp=drive_link" target="_blank" class="btn-preview">
+                    <i class="fa-regular fa-eye"></i> Xem thử
                 </a>
-                <button class="btn-copy" onclick="copyLink('https://drive.google.com/drive/folders/16BIK5_ePoiP9wM3jQDMP-sDTtG0B-15Z?usp=drive_link')" title="Sao chép link Google Drive">
-                    <i class="fa-regular fa-copy"></i>
+                <button class="btn-buy" onclick="openBuyModal('VL01', 'DẠY THÊM VẬT LÝ KHỐI 11 – THẦY TRẦN THI NHÂN', '180.000đ')">
+                    <i class="fa-solid fa-cart-shopping"></i> Đặt mua
                 </button>
             
                     </div>
                 </div>
 
-                <div class="card " data-title="dạy thêm vật lý khối 11 – cô nhung cute" data-code="vl02">
-                    <div class="card-top">
-                        <span class="badge-code">VL02</span>
-                        <span class="badge-price">180.000đ</span>
+                <div class="doc-item " data-title="dạy thêm vật lý khối 11 – cô nhung cute" data-code="vl02">
+                    <div class="doc-id">
+                        <span class="badge">VL02</span>
                     </div>
-                    <div class="card-title">DẠY THÊM VẬT LÝ KHỐI 11 – CÔ NHUNG CUTE</div>
-                    <div class="card-actions">
+                    <div class="doc-info">
+                        <div class="doc-title">DẠY THÊM VẬT LÝ KHỐI 11 – CÔ NHUNG CUTE</div>
+                        <div class="doc-price">Giá: 180.000đ</div>
+                    </div>
+                    <div class="doc-actions">
                         
-                <a href="https://drive.google.com/drive/folders/1ucb9cuIrO9Wzy5uCJw8yd_cyVWjEZgmO?usp=drive_link" target="_blank" class="btn-drive">
-                    <i class="fa-brands fa-google-drive"></i> Truy Cập Folder
+                <a href="https://drive.google.com/drive/folders/1ucb9cuIrO9Wzy5uCJw8yd_cyVWjEZgmO?usp=drive_link" target="_blank" class="btn-preview">
+                    <i class="fa-regular fa-eye"></i> Xem thử
                 </a>
-                <button class="btn-copy" onclick="copyLink('https://drive.google.com/drive/folders/1ucb9cuIrO9Wzy5uCJw8yd_cyVWjEZgmO?usp=drive_link')" title="Sao chép link Google Drive">
-                    <i class="fa-regular fa-copy"></i>
+                <button class="btn-buy" onclick="openBuyModal('VL02', 'DẠY THÊM VẬT LÝ KHỐI 11 – CÔ NHUNG CUTE', '180.000đ')">
+                    <i class="fa-solid fa-cart-shopping"></i> Đặt mua
                 </button>
             
                     </div>
                 </div>
 
-                <div class="card " data-title="dạy thêm vật lý khối 11 – thầy hoàng sư điểu" data-code="vl03">
-                    <div class="card-top">
-                        <span class="badge-code">VL03</span>
-                        <span class="badge-price">180.000đ</span>
+                <div class="doc-item " data-title="dạy thêm vật lý khối 11 – thầy hoàng sư điểu" data-code="vl03">
+                    <div class="doc-id">
+                        <span class="badge">VL03</span>
                     </div>
-                    <div class="card-title">DẠY THÊM VẬT LÝ KHỐI 11 – THẦY HOÀNG SƯ ĐIỂU</div>
-                    <div class="card-actions">
+                    <div class="doc-info">
+                        <div class="doc-title">DẠY THÊM VẬT LÝ KHỐI 11 – THẦY HOÀNG SƯ ĐIỂU</div>
+                        <div class="doc-price">Giá: 180.000đ</div>
+                    </div>
+                    <div class="doc-actions">
                         
-                <a href="https://drive.google.com/drive/folders/1BnwVGHUJt1g0h4_dCrWv1chETDV_lqWj?usp=drive_link" target="_blank" class="btn-drive">
-                    <i class="fa-brands fa-google-drive"></i> Truy Cập Folder
+                <a href="https://drive.google.com/drive/folders/1BnwVGHUJt1g0h4_dCrWv1chETDV_lqWj?usp=drive_link" target="_blank" class="btn-preview">
+                    <i class="fa-regular fa-eye"></i> Xem thử
                 </a>
-                <button class="btn-copy" onclick="copyLink('https://drive.google.com/drive/folders/1BnwVGHUJt1g0h4_dCrWv1chETDV_lqWj?usp=drive_link')" title="Sao chép link Google Drive">
-                    <i class="fa-regular fa-copy"></i>
+                <button class="btn-buy" onclick="openBuyModal('VL03', 'DẠY THÊM VẬT LÝ KHỐI 11 – THẦY HOÀNG SƯ ĐIỂU', '180.000đ')">
+                    <i class="fa-solid fa-cart-shopping"></i> Đặt mua
                 </button>
             
                     </div>
                 </div>
 
-                <div class="card " data-title="dạy thêm vật lý khối 11 – website tài liệu chuẩn" data-code="vl04">
-                    <div class="card-top">
-                        <span class="badge-code">VL04</span>
-                        <span class="badge-price">180.000đ</span>
+                <div class="doc-item " data-title="dạy thêm vật lý khối 11 – website tài liệu chuẩn" data-code="vl04">
+                    <div class="doc-id">
+                        <span class="badge">VL04</span>
                     </div>
-                    <div class="card-title">DẠY THÊM VẬT LÝ KHỐI 11 – WEBSITE TÀI LIỆU CHUẨN</div>
-                    <div class="card-actions">
+                    <div class="doc-info">
+                        <div class="doc-title">DẠY THÊM VẬT LÝ KHỐI 11 – WEBSITE TÀI LIỆU CHUẨN</div>
+                        <div class="doc-price">Giá: 180.000đ</div>
+                    </div>
+                    <div class="doc-actions">
                         
-                <a href="https://drive.google.com/drive/folders/1QGNqe5D5N6kyZY468Trm6hjw7ehXXLFo?usp=drive_link" target="_blank" class="btn-drive">
-                    <i class="fa-brands fa-google-drive"></i> Truy Cập Folder
+                <a href="https://drive.google.com/drive/folders/1QGNqe5D5N6kyZY468Trm6hjw7ehXXLFo?usp=drive_link" target="_blank" class="btn-preview">
+                    <i class="fa-regular fa-eye"></i> Xem thử
                 </a>
-                <button class="btn-copy" onclick="copyLink('https://drive.google.com/drive/folders/1QGNqe5D5N6kyZY468Trm6hjw7ehXXLFo?usp=drive_link')" title="Sao chép link Google Drive">
-                    <i class="fa-regular fa-copy"></i>
+                <button class="btn-buy" onclick="openBuyModal('VL04', 'DẠY THÊM VẬT LÝ KHỐI 11 – WEBSITE TÀI LIỆU CHUẨN', '180.000đ')">
+                    <i class="fa-solid fa-cart-shopping"></i> Đặt mua
                 </button>
             
                     </div>
                 </div>
 
-                <div class="card " data-title="dạy thêm vật lý khối 11 – website thủ khoa đại học" data-code="vl05">
-                    <div class="card-top">
-                        <span class="badge-code">VL05</span>
-                        <span class="badge-price">180.000đ</span>
+                <div class="doc-item " data-title="dạy thêm vật lý khối 11 – website thủ khoa đại học" data-code="vl05">
+                    <div class="doc-id">
+                        <span class="badge">VL05</span>
                     </div>
-                    <div class="card-title">DẠY THÊM VẬT LÝ KHỐI 11 – WEBSITE THỦ KHOA ĐẠI HỌC</div>
-                    <div class="card-actions">
+                    <div class="doc-info">
+                        <div class="doc-title">DẠY THÊM VẬT LÝ KHỐI 11 – WEBSITE THỦ KHOA ĐẠI HỌC</div>
+                        <div class="doc-price">Giá: 180.000đ</div>
+                    </div>
+                    <div class="doc-actions">
                         
-                <a href="https://drive.google.com/drive/folders/1yDjI-IePYX-wsqlj5QpLqQVoO79EB_AI?usp=drive_link" target="_blank" class="btn-drive">
-                    <i class="fa-brands fa-google-drive"></i> Truy Cập Folder
+                <a href="https://drive.google.com/drive/folders/1yDjI-IePYX-wsqlj5QpLqQVoO79EB_AI?usp=drive_link" target="_blank" class="btn-preview">
+                    <i class="fa-regular fa-eye"></i> Xem thử
                 </a>
-                <button class="btn-copy" onclick="copyLink('https://drive.google.com/drive/folders/1yDjI-IePYX-wsqlj5QpLqQVoO79EB_AI?usp=drive_link')" title="Sao chép link Google Drive">
-                    <i class="fa-regular fa-copy"></i>
+                <button class="btn-buy" onclick="openBuyModal('VL05', 'DẠY THÊM VẬT LÝ KHỐI 11 – WEBSITE THỦ KHOA ĐẠI HỌC', '180.000đ')">
+                    <i class="fa-solid fa-cart-shopping"></i> Đặt mua
                 </button>
             
                     </div>
                 </div>
 
-                <div class="card " data-title="dạy thêm vật lý khối 11 – website tài liệu chuẩn 2027" data-code="vl2706">
-                    <div class="card-top">
-                        <span class="badge-code">VL2706</span>
-                        <span class="badge-price">220.000đ</span>
+                <div class="doc-item " data-title="dạy thêm vật lý khối 11 – website tài liệu chuẩn 2027" data-code="vl2706">
+                    <div class="doc-id">
+                        <span class="badge">VL2706</span>
                     </div>
-                    <div class="card-title">DẠY THÊM VẬT LÝ KHỐI 11 – WEBSITE TÀI LIỆU CHUẨN 2027</div>
-                    <div class="card-actions">
+                    <div class="doc-info">
+                        <div class="doc-title">DẠY THÊM VẬT LÝ KHỐI 11 – WEBSITE TÀI LIỆU CHUẨN 2027</div>
+                        <div class="doc-price">Giá: 220.000đ</div>
+                    </div>
+                    <div class="doc-actions">
                         
-                <a href="https://drive.google.com/drive/folders/1nraFs7p5XajlkCHYnV3gq2G-WUMXwq98?usp=drive_link" target="_blank" class="btn-drive">
-                    <i class="fa-brands fa-google-drive"></i> Truy Cập Folder
+                <a href="https://drive.google.com/drive/folders/1nraFs7p5XajlkCHYnV3gq2G-WUMXwq98?usp=drive_link" target="_blank" class="btn-preview">
+                    <i class="fa-regular fa-eye"></i> Xem thử
                 </a>
-                <button class="btn-copy" onclick="copyLink('https://drive.google.com/drive/folders/1nraFs7p5XajlkCHYnV3gq2G-WUMXwq98?usp=drive_link')" title="Sao chép link Google Drive">
-                    <i class="fa-regular fa-copy"></i>
+                <button class="btn-buy" onclick="openBuyModal('VL2706', 'DẠY THÊM VẬT LÝ KHỐI 11 – WEBSITE TÀI LIỆU CHUẨN 2027', '220.000đ')">
+                    <i class="fa-solid fa-cart-shopping"></i> Đặt mua
                 </button>
             
                     </div>
@@ -738,188 +768,207 @@
         </div>
 
         <!-- CATEGORY: DẠY THÊM KHỐI 12 -->
-        <div class="category-content" data-cat="khoi-12">
+        <div class="category-content " data-cat="khoi-12">
             <div class="section-header">
                 <h2>DẠY THÊM KHỐI 12</h2>
-                <p>Danh sách các kho tài liệu chất lượng cao đã chọn lọc</p>
             </div>
-            <div class="grid-container">
+            <div class="doc-list">
 
-                <div class="card " data-title="dạy thêm vật lý khối 12 – thầy trần thi nhân" data-code="vl01">
-                    <div class="card-top">
-                        <span class="badge-code">VL01</span>
-                        <span class="badge-price">180.000đ</span>
+                <div class="doc-item " data-title="dạy thêm vật lý khối 12 – thầy trần thi nhân" data-code="vl01">
+                    <div class="doc-id">
+                        <span class="badge">VL01</span>
                     </div>
-                    <div class="card-title">DẠY THÊM VẬT LÝ KHỐI 12 – THẦY TRẦN THI NHÂN</div>
-                    <div class="card-actions">
+                    <div class="doc-info">
+                        <div class="doc-title">DẠY THÊM VẬT LÝ KHỐI 12 – THẦY TRẦN THI NHÂN</div>
+                        <div class="doc-price">Giá: 180.000đ</div>
+                    </div>
+                    <div class="doc-actions">
                         
-                <a href="https://drive.google.com/drive/folders/1IGOuDDz47JRmqngqFaufXJgqKFfMAw7v?usp=drive_link" target="_blank" class="btn-drive">
-                    <i class="fa-brands fa-google-drive"></i> Truy Cập Folder
+                <a href="https://drive.google.com/drive/folders/1IGOuDDz47JRmqngqFaufXJgqKFfMAw7v?usp=drive_link" target="_blank" class="btn-preview">
+                    <i class="fa-regular fa-eye"></i> Xem thử
                 </a>
-                <button class="btn-copy" onclick="copyLink('https://drive.google.com/drive/folders/1IGOuDDz47JRmqngqFaufXJgqKFfMAw7v?usp=drive_link')" title="Sao chép link Google Drive">
-                    <i class="fa-regular fa-copy"></i>
+                <button class="btn-buy" onclick="openBuyModal('VL01', 'DẠY THÊM VẬT LÝ KHỐI 12 – THẦY TRẦN THI NHÂN', '180.000đ')">
+                    <i class="fa-solid fa-cart-shopping"></i> Đặt mua
                 </button>
             
                     </div>
                 </div>
 
-                <div class="card " data-title="dạy thêm vật lý khối 12 – cô nhung cute" data-code="vl02">
-                    <div class="card-top">
-                        <span class="badge-code">VL02</span>
-                        <span class="badge-price">180.000đ</span>
+                <div class="doc-item " data-title="dạy thêm vật lý khối 12 – cô nhung cute" data-code="vl02">
+                    <div class="doc-id">
+                        <span class="badge">VL02</span>
                     </div>
-                    <div class="card-title">DẠY THÊM VẬT LÝ KHỐI 12 – CÔ NHUNG CUTE</div>
-                    <div class="card-actions">
+                    <div class="doc-info">
+                        <div class="doc-title">DẠY THÊM VẬT LÝ KHỐI 12 – CÔ NHUNG CUTE</div>
+                        <div class="doc-price">Giá: 180.000đ</div>
+                    </div>
+                    <div class="doc-actions">
                         
-                <a href="https://drive.google.com/drive/folders/1wyoi66R5PNQVZk7o5NbYVRI0CVt3zLcD?usp=drive_link" target="_blank" class="btn-drive">
-                    <i class="fa-brands fa-google-drive"></i> Truy Cập Folder
+                <a href="https://drive.google.com/drive/folders/1wyoi66R5PNQVZk7o5NbYVRI0CVt3zLcD?usp=drive_link" target="_blank" class="btn-preview">
+                    <i class="fa-regular fa-eye"></i> Xem thử
                 </a>
-                <button class="btn-copy" onclick="copyLink('https://drive.google.com/drive/folders/1wyoi66R5PNQVZk7o5NbYVRI0CVt3zLcD?usp=drive_link')" title="Sao chép link Google Drive">
-                    <i class="fa-regular fa-copy"></i>
+                <button class="btn-buy" onclick="openBuyModal('VL02', 'DẠY THÊM VẬT LÝ KHỐI 12 – CÔ NHUNG CUTE', '180.000đ')">
+                    <i class="fa-solid fa-cart-shopping"></i> Đặt mua
                 </button>
             
                     </div>
                 </div>
 
-                <div class="card " data-title="dạy thêm vật lý khối 12 – thầy hoàng sư điểu" data-code="vl03">
-                    <div class="card-top">
-                        <span class="badge-code">VL03</span>
-                        <span class="badge-price">180.000đ</span>
+                <div class="doc-item " data-title="dạy thêm vật lý khối 12 – thầy hoàng sư điểu" data-code="vl03">
+                    <div class="doc-id">
+                        <span class="badge">VL03</span>
                     </div>
-                    <div class="card-title">DẠY THÊM VẬT LÝ KHỐI 12 – THẦY HOÀNG SƯ ĐIỂU</div>
-                    <div class="card-actions">
+                    <div class="doc-info">
+                        <div class="doc-title">DẠY THÊM VẬT LÝ KHỐI 12 – THẦY HOÀNG SƯ ĐIỂU</div>
+                        <div class="doc-price">Giá: 180.000đ</div>
+                    </div>
+                    <div class="doc-actions">
                         
-                <a href="https://drive.google.com/drive/folders/1huMZLQsAyNnvGCIbc2jS01xdAE-Q6Blm?usp=drive_link" target="_blank" class="btn-drive">
-                    <i class="fa-brands fa-google-drive"></i> Truy Cập Folder
+                <a href="https://drive.google.com/drive/folders/1huMZLQsAyNnvGCIbc2jS01xdAE-Q6Blm?usp=drive_link" target="_blank" class="btn-preview">
+                    <i class="fa-regular fa-eye"></i> Xem thử
                 </a>
-                <button class="btn-copy" onclick="copyLink('https://drive.google.com/drive/folders/1huMZLQsAyNnvGCIbc2jS01xdAE-Q6Blm?usp=drive_link')" title="Sao chép link Google Drive">
-                    <i class="fa-regular fa-copy"></i>
+                <button class="btn-buy" onclick="openBuyModal('VL03', 'DẠY THÊM VẬT LÝ KHỐI 12 – THẦY HOÀNG SƯ ĐIỂU', '180.000đ')">
+                    <i class="fa-solid fa-cart-shopping"></i> Đặt mua
                 </button>
             
                     </div>
                 </div>
 
-                <div class="card " data-title="dạy thêm vật lý khối 12 – website tài liệu chuẩn" data-code="vl04">
-                    <div class="card-top">
-                        <span class="badge-code">VL04</span>
-                        <span class="badge-price">180.000đ</span>
+                <div class="doc-item " data-title="dạy thêm vật lý khối 12 – website tài liệu chuẩn" data-code="vl04">
+                    <div class="doc-id">
+                        <span class="badge">VL04</span>
                     </div>
-                    <div class="card-title">DẠY THÊM VẬT LÝ KHỐI 12 – WEBSITE TÀI LIỆU CHUẨN</div>
-                    <div class="card-actions">
+                    <div class="doc-info">
+                        <div class="doc-title">DẠY THÊM VẬT LÝ KHỐI 12 – WEBSITE TÀI LIỆU CHUẨN</div>
+                        <div class="doc-price">Giá: 180.000đ</div>
+                    </div>
+                    <div class="doc-actions">
                         
-                <a href="https://drive.google.com/drive/folders/1QbWF7xmkcZ5T9CGrerafaFnCHWV1bhFo?usp=drive_link" target="_blank" class="btn-drive">
-                    <i class="fa-brands fa-google-drive"></i> Truy Cập Folder
+                <a href="https://drive.google.com/drive/folders/1QbWF7xmkcZ5T9CGrerafaFnCHWV1bhFo?usp=drive_link" target="_blank" class="btn-preview">
+                    <i class="fa-regular fa-eye"></i> Xem thử
                 </a>
-                <button class="btn-copy" onclick="copyLink('https://drive.google.com/drive/folders/1QbWF7xmkcZ5T9CGrerafaFnCHWV1bhFo?usp=drive_link')" title="Sao chép link Google Drive">
-                    <i class="fa-regular fa-copy"></i>
+                <button class="btn-buy" onclick="openBuyModal('VL04', 'DẠY THÊM VẬT LÝ KHỐI 12 – WEBSITE TÀI LIỆU CHUẨN', '180.000đ')">
+                    <i class="fa-solid fa-cart-shopping"></i> Đặt mua
                 </button>
             
                     </div>
                 </div>
 
-                <div class="card " data-title="dạy thêm vật lý khối 12 – thầy vũ đông dương" data-code="vl06">
-                    <div class="card-top">
-                        <span class="badge-code">VL06</span>
-                        <span class="badge-price">180.000đ</span>
+                <div class="doc-item " data-title="dạy thêm vật lý khối 12 – thầy vũ đông dương" data-code="vl06">
+                    <div class="doc-id">
+                        <span class="badge">VL06</span>
                     </div>
-                    <div class="card-title">DẠY THÊM VẬT LÝ KHỐI 12 – THẦY VŨ ĐÔNG DƯƠNG</div>
-                    <div class="card-actions">
+                    <div class="doc-info">
+                        <div class="doc-title">DẠY THÊM VẬT LÝ KHỐI 12 – THẦY VŨ ĐÔNG DƯƠNG</div>
+                        <div class="doc-price">Giá: 180.000đ</div>
+                    </div>
+                    <div class="doc-actions">
                         
-                <a href="https://drive.google.com/drive/folders/1mSjv4I2tOzxQV_MUEjhZZidoMLNOYf8w?usp=drive_link" target="_blank" class="btn-drive">
-                    <i class="fa-brands fa-google-drive"></i> Truy Cập Folder
+                <a href="https://drive.google.com/drive/folders/1mSjv4I2tOzxQV_MUEjhZZidoMLNOYf8w?usp=drive_link" target="_blank" class="btn-preview">
+                    <i class="fa-regular fa-eye"></i> Xem thử
                 </a>
-                <button class="btn-copy" onclick="copyLink('https://drive.google.com/drive/folders/1mSjv4I2tOzxQV_MUEjhZZidoMLNOYf8w?usp=drive_link')" title="Sao chép link Google Drive">
-                    <i class="fa-regular fa-copy"></i>
+                <button class="btn-buy" onclick="openBuyModal('VL06', 'DẠY THÊM VẬT LÝ KHỐI 12 – THẦY VŨ ĐÔNG DƯƠNG', '180.000đ')">
+                    <i class="fa-solid fa-cart-shopping"></i> Đặt mua
                 </button>
             
                     </div>
                 </div>
 
-                <div class="card " data-title="dạy thêm vật lý khối 12 – thái văn thành" data-code="vl09">
-                    <div class="card-top">
-                        <span class="badge-code">VL09</span>
-                        <span class="badge-price">230.000đ</span>
+                <div class="doc-item " data-title="dạy thêm vật lý khối 12 – thái văn thành" data-code="vl09">
+                    <div class="doc-id">
+                        <span class="badge">VL09</span>
                     </div>
-                    <div class="card-title">DẠY THÊM VẬT LÝ KHỐI 12 – THÁI VĂN THÀNH</div>
-                    <div class="card-actions">
+                    <div class="doc-info">
+                        <div class="doc-title">DẠY THÊM VẬT LÝ KHỐI 12 – THÁI VĂN THÀNH</div>
+                        <div class="doc-price">Giá: 230.000đ</div>
+                    </div>
+                    <div class="doc-actions">
                         
-                <a href="https://drive.google.com/drive/folders/1KGWLmI1yN-BABQCS-tvTBXK8A-h2Shp5?usp=drive_link" target="_blank" class="btn-drive">
-                    <i class="fa-brands fa-google-drive"></i> Truy Cập Folder
+                <a href="https://drive.google.com/drive/folders/1KGWLmI1yN-BABQCS-tvTBXK8A-h2Shp5?usp=drive_link" target="_blank" class="btn-preview">
+                    <i class="fa-regular fa-eye"></i> Xem thử
                 </a>
-                <button class="btn-copy" onclick="copyLink('https://drive.google.com/drive/folders/1KGWLmI1yN-BABQCS-tvTBXK8A-h2Shp5?usp=drive_link')" title="Sao chép link Google Drive">
-                    <i class="fa-regular fa-copy"></i>
+                <button class="btn-buy" onclick="openBuyModal('VL09', 'DẠY THÊM VẬT LÝ KHỐI 12 – THÁI VĂN THÀNH', '230.000đ')">
+                    <i class="fa-solid fa-cart-shopping"></i> Đặt mua
                 </button>
             
                     </div>
                 </div>
 
-                <div class="card " data-title="dạy thêm & bài tập thực tế khối 12 – thầy chu văn biên" data-code="vl14">
-                    <div class="card-top">
-                        <span class="badge-code">VL14</span>
-                        <span class="badge-price">250.000đ</span>
+                <div class="doc-item " data-title="dạy thêm & bài tập thực tế khối 12 – thầy chu văn biên" data-code="vl14">
+                    <div class="doc-id">
+                        <span class="badge">VL14</span>
                     </div>
-                    <div class="card-title">DẠY THÊM & BÀI TẬP THỰC TẾ KHỐI 12 – THẦY CHU VĂN BIÊN</div>
-                    <div class="card-actions">
+                    <div class="doc-info">
+                        <div class="doc-title">DẠY THÊM & BÀI TẬP THỰC TẾ KHỐI 12 – THẦY CHU VĂN BIÊN</div>
+                        <div class="doc-price">Giá: 250.000đ</div>
+                    </div>
+                    <div class="doc-actions">
                         
-                <a href="https://drive.google.com/drive/folders/1-4ZOBanxGz8If5tbtf8jB7M2-ztdrDCC?usp=drive_link" target="_blank" class="btn-drive">
-                    <i class="fa-brands fa-google-drive"></i> Truy Cập Folder
+                <a href="https://drive.google.com/drive/folders/1-4ZOBanxGz8If5tbtf8jB7M2-ztdrDCC?usp=drive_link" target="_blank" class="btn-preview">
+                    <i class="fa-regular fa-eye"></i> Xem thử
                 </a>
-                <button class="btn-copy" onclick="copyLink('https://drive.google.com/drive/folders/1-4ZOBanxGz8If5tbtf8jB7M2-ztdrDCC?usp=drive_link')" title="Sao chép link Google Drive">
-                    <i class="fa-regular fa-copy"></i>
+                <button class="btn-buy" onclick="openBuyModal('VL14', 'DẠY THÊM & BÀI TẬP THỰC TẾ KHỐI 12 – THẦY CHU VĂN BIÊN', '250.000đ')">
+                    <i class="fa-solid fa-cart-shopping"></i> Đặt mua
                 </button>
             
                     </div>
                 </div>
 
-                <div class="card " data-title="dạy thêm vật lý khối 12 – thầy trần thi nhân 2027" data-code="vl2702">
-                    <div class="card-top">
-                        <span class="badge-code">VL2702</span>
-                        <span class="badge-price">250.000đ</span>
+                <div class="doc-item " data-title="dạy thêm vật lý khối 12 – thầy trần thi nhân 2027" data-code="vl2702">
+                    <div class="doc-id">
+                        <span class="badge">VL2702</span>
                     </div>
-                    <div class="card-title">DẠY THÊM VẬT LÝ KHỐI 12 – THẦY TRẦN THI NHÂN 2027</div>
-                    <div class="card-actions">
+                    <div class="doc-info">
+                        <div class="doc-title">DẠY THÊM VẬT LÝ KHỐI 12 – THẦY TRẦN THI NHÂN 2027</div>
+                        <div class="doc-price">Giá: 250.000đ</div>
+                    </div>
+                    <div class="doc-actions">
                         
-                <a href="https://drive.google.com/drive/folders/1hZ8CdpZ9MLRbEcmT1dGyksW0YYI3DPcW?usp=drive_link" target="_blank" class="btn-drive">
-                    <i class="fa-brands fa-google-drive"></i> Truy Cập Folder
+                <a href="https://drive.google.com/drive/folders/1hZ8CdpZ9MLRbEcmT1dGyksW0YYI3DPcW?usp=drive_link" target="_blank" class="btn-preview">
+                    <i class="fa-regular fa-eye"></i> Xem thử
                 </a>
-                <button class="btn-copy" onclick="copyLink('https://drive.google.com/drive/folders/1hZ8CdpZ9MLRbEcmT1dGyksW0YYI3DPcW?usp=drive_link')" title="Sao chép link Google Drive">
-                    <i class="fa-regular fa-copy"></i>
+                <button class="btn-buy" onclick="openBuyModal('VL2702', 'DẠY THÊM VẬT LÝ KHỐI 12 – THẦY TRẦN THI NHÂN 2027', '250.000đ')">
+                    <i class="fa-solid fa-cart-shopping"></i> Đặt mua
                 </button>
             
                     </div>
                 </div>
 
-                <div class="card " data-title="nắm trọn kiến thức vật lý 12 – thầy đỗ ngọc hà" data-code="vl2703">
-                    <div class="card-top">
-                        <span class="badge-code">VL2703</span>
-                        <span class="badge-price">400.000đ</span>
+                <div class="doc-item " data-title="nắm trọn kiến thức vật lý 12 – thầy đỗ ngọc hà" data-code="vl2703">
+                    <div class="doc-id">
+                        <span class="badge">VL2703</span>
                     </div>
-                    <div class="card-title">NẮM TRỌN KIẾN THỨC VẬT LÝ 12 – THẦY ĐỖ NGỌC HÀ</div>
-                    <div class="card-actions">
+                    <div class="doc-info">
+                        <div class="doc-title">NẮM TRỌN KIẾN THỨC VẬT LÝ 12 – THẦY ĐỖ NGỌC HÀ</div>
+                        <div class="doc-price">Giá: 400.000đ</div>
+                    </div>
+                    <div class="doc-actions">
                         
-                <a href="https://drive.google.com/drive/folders/1h1nKNDhlSSTEfBbXoPTAA8ZS9WaAN63x?usp=drive_link" target="_blank" class="btn-drive">
-                    <i class="fa-brands fa-google-drive"></i> Truy Cập Folder
+                <a href="https://drive.google.com/drive/folders/1h1nKNDhlSSTEfBbXoPTAA8ZS9WaAN63x?usp=drive_link" target="_blank" class="btn-preview">
+                    <i class="fa-regular fa-eye"></i> Xem thử
                 </a>
-                <button class="btn-copy" onclick="copyLink('https://drive.google.com/drive/folders/1h1nKNDhlSSTEfBbXoPTAA8ZS9WaAN63x?usp=drive_link')" title="Sao chép link Google Drive">
-                    <i class="fa-regular fa-copy"></i>
+                <button class="btn-buy" onclick="openBuyModal('VL2703', 'NẮM TRỌN KIẾN THỨC VẬT LÝ 12 – THẦY ĐỖ NGỌC HÀ', '400.000đ')">
+                    <i class="fa-solid fa-cart-shopping"></i> Đặt mua
                 </button>
             
                     </div>
                 </div>
 
-                <div class="card " data-title="dạy thêm vật lý khối 12 – website tài liệu chuẩn 2027" data-code="vl2706">
-                    <div class="card-top">
-                        <span class="badge-code">VL2706</span>
-                        <span class="badge-price">220.000đ</span>
+                <div class="doc-item " data-title="dạy thêm vật lý khối 12 – website tài liệu chuẩn 2027" data-code="vl2706">
+                    <div class="doc-id">
+                        <span class="badge">VL2706</span>
                     </div>
-                    <div class="card-title">DẠY THÊM VẬT LÝ KHỐI 12 – WEBSITE TÀI LIỆU CHUẨN 2027</div>
-                    <div class="card-actions">
+                    <div class="doc-info">
+                        <div class="doc-title">DẠY THÊM VẬT LÝ KHỐI 12 – WEBSITE TÀI LIỆU CHUẨN 2027</div>
+                        <div class="doc-price">Giá: 220.000đ</div>
+                    </div>
+                    <div class="doc-actions">
                         
-                <a href="https://drive.google.com/drive/folders/1gFFX4C-OsQKRt0oBb0nhHFiTbot5S8cU?usp=drive_link" target="_blank" class="btn-drive">
-                    <i class="fa-brands fa-google-drive"></i> Truy Cập Folder
+                <a href="https://drive.google.com/drive/folders/1gFFX4C-OsQKRt0oBb0nhHFiTbot5S8cU?usp=drive_link" target="_blank" class="btn-preview">
+                    <i class="fa-regular fa-eye"></i> Xem thử
                 </a>
-                <button class="btn-copy" onclick="copyLink('https://drive.google.com/drive/folders/1gFFX4C-OsQKRt0oBb0nhHFiTbot5S8cU?usp=drive_link')" title="Sao chép link Google Drive">
-                    <i class="fa-regular fa-copy"></i>
+                <button class="btn-buy" onclick="openBuyModal('VL2706', 'DẠY THÊM VẬT LÝ KHỐI 12 – WEBSITE TÀI LIỆU CHUẨN 2027', '220.000đ')">
+                    <i class="fa-solid fa-cart-shopping"></i> Đặt mua
                 </button>
             
                     </div>
@@ -929,134 +978,147 @@
         </div>
 
         <!-- CATEGORY: CHUYÊN LUYỆN LÝ THUYẾT KHỐI 12 -->
-        <div class="category-content" data-cat="ly-thuyet">
+        <div class="category-content " data-cat="ly-thuyet">
             <div class="section-header">
                 <h2>CHUYÊN LUYỆN LÝ THUYẾT KHỐI 12</h2>
-                <p>Danh sách các kho tài liệu chất lượng cao đã chọn lọc</p>
             </div>
-            <div class="grid-container">
+            <div class="doc-list">
 
-                <div class="card " data-title="tóm tắt lý thuyết vật lý 3 khối – turing physics" data-code="vl2705">
-                    <div class="card-top">
-                        <span class="badge-code">VL2705</span>
-                        <span class="badge-price">130.000đ</span>
+                <div class="doc-item " data-title="tóm tắt lý thuyết vật lý 3 khối – turing physics" data-code="vl2705">
+                    <div class="doc-id">
+                        <span class="badge">VL2705</span>
                     </div>
-                    <div class="card-title">TÓM TẮT LÝ THUYẾT VẬT LÝ 3 KHỐI – TURING PHYSICS</div>
-                    <div class="card-actions">
+                    <div class="doc-info">
+                        <div class="doc-title">TÓM TẮT LÝ THUYẾT VẬT LÝ 3 KHỐI – TURING PHYSICS</div>
+                        <div class="doc-price">Giá: 130.000đ</div>
+                    </div>
+                    <div class="doc-actions">
                         
-                <a href="https://drive.google.com/drive/folders/1KCB8mpSN_JAKTcEkJOvwOLS4W0BKlujp?usp=drive_link" target="_blank" class="btn-drive">
-                    <i class="fa-brands fa-google-drive"></i> Truy Cập Folder
+                <a href="https://drive.google.com/drive/folders/1KCB8mpSN_JAKTcEkJOvwOLS4W0BKlujp?usp=drive_link" target="_blank" class="btn-preview">
+                    <i class="fa-regular fa-eye"></i> Xem thử
                 </a>
-                <button class="btn-copy" onclick="copyLink('https://drive.google.com/drive/folders/1KCB8mpSN_JAKTcEkJOvwOLS4W0BKlujp?usp=drive_link')" title="Sao chép link Google Drive">
-                    <i class="fa-regular fa-copy"></i>
+                <button class="btn-buy" onclick="openBuyModal('VL2705', 'TÓM TẮT LÝ THUYẾT VẬT LÝ 3 KHỐI – TURING PHYSICS', '130.000đ')">
+                    <i class="fa-solid fa-cart-shopping"></i> Đặt mua
                 </button>
             
                     </div>
                 </div>
 
-                <div class="card " data-title="699 câu chinh phục toàn diện lý thuyết – thầy vũ ngọc anh" data-code="vl07">
-                    <div class="card-top">
-                        <span class="badge-code">VL07</span>
-                        <span class="badge-price">120.000đ</span>
+                <div class="doc-item " data-title="699 câu chinh phục toàn diện lý thuyết – thầy vũ ngọc anh" data-code="vl07">
+                    <div class="doc-id">
+                        <span class="badge">VL07</span>
                     </div>
-                    <div class="card-title">699 CÂU CHINH PHỤC TOÀN DIỆN LÝ THUYẾT – THẦY VŨ NGỌC ANH</div>
-                    <div class="card-actions">
+                    <div class="doc-info">
+                        <div class="doc-title">699 CÂU CHINH PHỤC TOÀN DIỆN LÝ THUYẾT – THẦY VŨ NGỌC ANH</div>
+                        <div class="doc-price">Giá: 120.000đ</div>
+                    </div>
+                    <div class="doc-actions">
                         
-                <a href="https://drive.google.com/drive/folders/1SV6RDeI-r2fA3veSihm9hdtserWsor67?usp=drive_link" target="_blank" class="btn-drive">
-                    <i class="fa-brands fa-google-drive"></i> Truy Cập Folder
+                <a href="https://drive.google.com/drive/folders/1SV6RDeI-r2fA3veSihm9hdtserWsor67?usp=drive_link" target="_blank" class="btn-preview">
+                    <i class="fa-regular fa-eye"></i> Xem thử
                 </a>
-                <button class="btn-copy" onclick="copyLink('https://drive.google.com/drive/folders/1SV6RDeI-r2fA3veSihm9hdtserWsor67?usp=drive_link')" title="Sao chép link Google Drive">
-                    <i class="fa-regular fa-copy"></i>
+                <button class="btn-buy" onclick="openBuyModal('VL07', '699 CÂU CHINH PHỤC TOÀN DIỆN LÝ THUYẾT – THẦY VŨ NGỌC ANH', '120.000đ')">
+                    <i class="fa-solid fa-cart-shopping"></i> Đặt mua
                 </button>
             
                     </div>
                 </div>
 
-                <div class="card " data-title="1000 câu càn quét lý thuyết – thầy vũ ngọc anh" data-code="vl07">
-                    <div class="card-top">
-                        <span class="badge-code">VL07</span>
-                        <span class="badge-price">120.000đ</span>
+                <div class="doc-item " data-title="1000 câu càn quét lý thuyết – thầy vũ ngọc anh" data-code="vl07">
+                    <div class="doc-id">
+                        <span class="badge">VL07</span>
                     </div>
-                    <div class="card-title">1000 CÂU CÀN QUÉT LÝ THUYẾT – THẦY VŨ NGỌC ANH</div>
-                    <div class="card-actions">
+                    <div class="doc-info">
+                        <div class="doc-title">1000 CÂU CÀN QUÉT LÝ THUYẾT – THẦY VŨ NGỌC ANH</div>
+                        <div class="doc-price">Giá: 120.000đ</div>
+                    </div>
+                    <div class="doc-actions">
                         
-                <a href="https://drive.google.com/drive/folders/1xTWu_wbkz7L-PZZ-SsNz2Kr4bqmJFtqD?usp=drive_link" target="_blank" class="btn-drive">
-                    <i class="fa-brands fa-google-drive"></i> Truy Cập Folder
+                <a href="https://drive.google.com/drive/folders/1xTWu_wbkz7L-PZZ-SsNz2Kr4bqmJFtqD?usp=drive_link" target="_blank" class="btn-preview">
+                    <i class="fa-regular fa-eye"></i> Xem thử
                 </a>
-                <button class="btn-copy" onclick="copyLink('https://drive.google.com/drive/folders/1xTWu_wbkz7L-PZZ-SsNz2Kr4bqmJFtqD?usp=drive_link')" title="Sao chép link Google Drive">
-                    <i class="fa-regular fa-copy"></i>
+                <button class="btn-buy" onclick="openBuyModal('VL07', '1000 CÂU CÀN QUÉT LÝ THUYẾT – THẦY VŨ NGỌC ANH', '120.000đ')">
+                    <i class="fa-solid fa-cart-shopping"></i> Đặt mua
                 </button>
             
                     </div>
                 </div>
 
-                <div class="card " data-title="bộ đề luyện 10 điểm lý thuyết vật lý" data-code="vl19">
-                    <div class="card-top">
-                        <span class="badge-code">VL19</span>
-                        <span class="badge-price">200.000đ</span>
+                <div class="doc-item " data-title="bộ đề luyện 10 điểm lý thuyết vật lý" data-code="vl19">
+                    <div class="doc-id">
+                        <span class="badge">VL19</span>
                     </div>
-                    <div class="card-title">BỘ ĐỀ LUYỆN 10 ĐIỂM LÝ THUYẾT VẬT LÝ</div>
-                    <div class="card-actions">
+                    <div class="doc-info">
+                        <div class="doc-title">BỘ ĐỀ LUYỆN 10 ĐIỂM LÝ THUYẾT VẬT LÝ</div>
+                        <div class="doc-price">Giá: 200.000đ</div>
+                    </div>
+                    <div class="doc-actions">
                         
-                <a href="https://drive.google.com/drive/folders/1ydCAoORrDswI7y9bdf-udQR90x0ZHQ9D?usp=drive_link" target="_blank" class="btn-drive">
-                    <i class="fa-brands fa-google-drive"></i> Truy Cập Folder
+                <a href="https://drive.google.com/drive/folders/1ydCAoORrDswI7y9bdf-udQR90x0ZHQ9D?usp=drive_link" target="_blank" class="btn-preview">
+                    <i class="fa-regular fa-eye"></i> Xem thử
                 </a>
-                <button class="btn-copy" onclick="copyLink('https://drive.google.com/drive/folders/1ydCAoORrDswI7y9bdf-udQR90x0ZHQ9D?usp=drive_link')" title="Sao chép link Google Drive">
-                    <i class="fa-regular fa-copy"></i>
+                <button class="btn-buy" onclick="openBuyModal('VL19', 'BỘ ĐỀ LUYỆN 10 ĐIỂM LÝ THUYẾT VẬT LÝ', '200.000đ')">
+                    <i class="fa-solid fa-cart-shopping"></i> Đặt mua
                 </button>
             
                     </div>
                 </div>
 
-                <div class="card " data-title="600+ câu trắc nghiệm đúng sai lý thuyết – website tài liệu chuẩn" data-code="vl25">
-                    <div class="card-top">
-                        <span class="badge-code">VL25</span>
-                        <span class="badge-price">200.000đ</span>
+                <div class="doc-item " data-title="600+ câu trắc nghiệm đúng sai lý thuyết – website tài liệu chuẩn" data-code="vl25">
+                    <div class="doc-id">
+                        <span class="badge">VL25</span>
                     </div>
-                    <div class="card-title">600+ CÂU TRẮC NGHIỆM ĐÚNG SAI LÝ THUYẾT – WEBSITE TÀI LIỆU CHUẨN</div>
-                    <div class="card-actions">
+                    <div class="doc-info">
+                        <div class="doc-title">600+ CÂU TRẮC NGHIỆM ĐÚNG SAI LÝ THUYẾT – WEBSITE TÀI LIỆU CHUẨN</div>
+                        <div class="doc-price">Giá: 200.000đ</div>
+                    </div>
+                    <div class="doc-actions">
                         
-                <a href="https://drive.google.com/drive/folders/1ScueMhKC0LvL48B4DUAT3y72J9S-npFR?usp=drive_link" target="_blank" class="btn-drive">
-                    <i class="fa-brands fa-google-drive"></i> Truy Cập Folder
+                <a href="https://drive.google.com/drive/folders/1ScueMhKC0LvL48B4DUAT3y72J9S-npFR?usp=drive_link" target="_blank" class="btn-preview">
+                    <i class="fa-regular fa-eye"></i> Xem thử
                 </a>
-                <button class="btn-copy" onclick="copyLink('https://drive.google.com/drive/folders/1ScueMhKC0LvL48B4DUAT3y72J9S-npFR?usp=drive_link')" title="Sao chép link Google Drive">
-                    <i class="fa-regular fa-copy"></i>
+                <button class="btn-buy" onclick="openBuyModal('VL25', '600+ CÂU TRẮC NGHIỆM ĐÚNG SAI LÝ THUYẾT – WEBSITE TÀI LIỆU CHUẨN', '200.000đ')">
+                    <i class="fa-solid fa-cart-shopping"></i> Đặt mua
                 </button>
             
                     </div>
                 </div>
 
-                <div class="card " data-title="20 đề luyện lý thuyết tnthptqg2026" data-code="vl26">
-                    <div class="card-top">
-                        <span class="badge-code">VL26</span>
-                        <span class="badge-price">130.000đ</span>
+                <div class="doc-item " data-title="20 đề luyện lý thuyết tnthptqg2026" data-code="vl26">
+                    <div class="doc-id">
+                        <span class="badge">VL26</span>
                     </div>
-                    <div class="card-title">20 ĐỀ LUYỆN LÝ THUYẾT TNTHPTQG2026</div>
-                    <div class="card-actions">
+                    <div class="doc-info">
+                        <div class="doc-title">20 ĐỀ LUYỆN LÝ THUYẾT TNTHPTQG2026</div>
+                        <div class="doc-price">Giá: 130.000đ</div>
+                    </div>
+                    <div class="doc-actions">
                         
-                <a href="https://drive.google.com/drive/folders/17SgLwiqR_JtjLpiN98WvJwgvDuMRM1gf?usp=drive_link" target="_blank" class="btn-drive">
-                    <i class="fa-brands fa-google-drive"></i> Truy Cập Folder
+                <a href="https://drive.google.com/drive/folders/17SgLwiqR_JtjLpiN98WvJwgvDuMRM1gf?usp=drive_link" target="_blank" class="btn-preview">
+                    <i class="fa-regular fa-eye"></i> Xem thử
                 </a>
-                <button class="btn-copy" onclick="copyLink('https://drive.google.com/drive/folders/17SgLwiqR_JtjLpiN98WvJwgvDuMRM1gf?usp=drive_link')" title="Sao chép link Google Drive">
-                    <i class="fa-regular fa-copy"></i>
+                <button class="btn-buy" onclick="openBuyModal('VL26', '20 ĐỀ LUYỆN LÝ THUYẾT TNTHPTQG2026', '130.000đ')">
+                    <i class="fa-solid fa-cart-shopping"></i> Đặt mua
                 </button>
             
                     </div>
                 </div>
 
-                <div class="card " data-title="1000 câu trắc nghiệm lý thuyết" data-code="vl27">
-                    <div class="card-top">
-                        <span class="badge-code">VL27</span>
-                        <span class="badge-price">130.000đ</span>
+                <div class="doc-item " data-title="1000 câu trắc nghiệm lý thuyết" data-code="vl27">
+                    <div class="doc-id">
+                        <span class="badge">VL27</span>
                     </div>
-                    <div class="card-title">1000 CÂU TRẮC NGHIỆM LÝ THUYẾT</div>
-                    <div class="card-actions">
+                    <div class="doc-info">
+                        <div class="doc-title">1000 CÂU TRẮC NGHIỆM LÝ THUYẾT</div>
+                        <div class="doc-price">Giá: 130.000đ</div>
+                    </div>
+                    <div class="doc-actions">
                         
-                <a href="https://drive.google.com/drive/folders/1XsLWHoduZ3n4lIPKlInnu1-5TkioItoT?usp=drive_link" target="_blank" class="btn-drive">
-                    <i class="fa-brands fa-google-drive"></i> Truy Cập Folder
+                <a href="https://drive.google.com/drive/folders/1XsLWHoduZ3n4lIPKlInnu1-5TkioItoT?usp=drive_link" target="_blank" class="btn-preview">
+                    <i class="fa-regular fa-eye"></i> Xem thử
                 </a>
-                <button class="btn-copy" onclick="copyLink('https://drive.google.com/drive/folders/1XsLWHoduZ3n4lIPKlInnu1-5TkioItoT?usp=drive_link')" title="Sao chép link Google Drive">
-                    <i class="fa-regular fa-copy"></i>
+                <button class="btn-buy" onclick="openBuyModal('VL27', '1000 CÂU TRẮC NGHIỆM LÝ THUYẾT', '130.000đ')">
+                    <i class="fa-solid fa-cart-shopping"></i> Đặt mua
                 </button>
             
                     </div>
@@ -1066,80 +1128,87 @@
         </div>
 
         <!-- CATEGORY: CHUYÊN LUYỆN MÔ HÌNH & THỰC TẾ KHỐI 12 -->
-        <div class="category-content" data-cat="mo-hinh-thuc-te">
+        <div class="category-content " data-cat="mo-hinh-thuc-te">
             <div class="section-header">
                 <h2>CHUYÊN LUYỆN MÔ HÌNH & THỰC TẾ KHỐI 12</h2>
-                <p>Danh sách các kho tài liệu chất lượng cao đã chọn lọc</p>
             </div>
-            <div class="grid-container">
+            <div class="doc-list">
 
-                <div class="card " data-title="100 mô hình thực tế nâng cao – thầy vũ ngọc anh" data-code="vl07">
-                    <div class="card-top">
-                        <span class="badge-code">VL07</span>
-                        <span class="badge-price">130.000đ</span>
+                <div class="doc-item " data-title="100 mô hình thực tế nâng cao – thầy vũ ngọc anh" data-code="vl07">
+                    <div class="doc-id">
+                        <span class="badge">VL07</span>
                     </div>
-                    <div class="card-title">100 MÔ HÌNH THỰC TẾ NÂNG CAO – THẦY VŨ NGỌC ANH</div>
-                    <div class="card-actions">
+                    <div class="doc-info">
+                        <div class="doc-title">100 MÔ HÌNH THỰC TẾ NÂNG CAO – THẦY VŨ NGỌC ANH</div>
+                        <div class="doc-price">Giá: 130.000đ</div>
+                    </div>
+                    <div class="doc-actions">
                         
-                <a href="https://drive.google.com/drive/folders/1aQCcJsVw0szFpbXFDKb3W85U1dh5YDGU?usp=drive_link" target="_blank" class="btn-drive">
-                    <i class="fa-brands fa-google-drive"></i> Truy Cập Folder
+                <a href="https://drive.google.com/drive/folders/1aQCcJsVw0szFpbXFDKb3W85U1dh5YDGU?usp=drive_link" target="_blank" class="btn-preview">
+                    <i class="fa-regular fa-eye"></i> Xem thử
                 </a>
-                <button class="btn-copy" onclick="copyLink('https://drive.google.com/drive/folders/1aQCcJsVw0szFpbXFDKb3W85U1dh5YDGU?usp=drive_link')" title="Sao chép link Google Drive">
-                    <i class="fa-regular fa-copy"></i>
+                <button class="btn-buy" onclick="openBuyModal('VL07', '100 MÔ HÌNH THỰC TẾ NÂNG CAO – THẦY VŨ NGỌC ANH', '130.000đ')">
+                    <i class="fa-solid fa-cart-shopping"></i> Đặt mua
                 </button>
             
                     </div>
                 </div>
 
-                <div class="card " data-title="200 câu hỏi thực tế & thí nghiệm – thầy vũ đông dương" data-code="vl08">
-                    <div class="card-top">
-                        <span class="badge-code">VL08</span>
-                        <span class="badge-price">70.000đ</span>
+                <div class="doc-item " data-title="200 câu hỏi thực tế & thí nghiệm – thầy vũ đông dương" data-code="vl08">
+                    <div class="doc-id">
+                        <span class="badge">VL08</span>
                     </div>
-                    <div class="card-title">200 CÂU HỎI THỰC TẾ & THÍ NGHIỆM – THẦY VŨ ĐÔNG DƯƠNG</div>
-                    <div class="card-actions">
+                    <div class="doc-info">
+                        <div class="doc-title">200 CÂU HỎI THỰC TẾ & THÍ NGHIỆM – THẦY VŨ ĐÔNG DƯƠNG</div>
+                        <div class="doc-price">Giá: 70.000đ</div>
+                    </div>
+                    <div class="doc-actions">
                         
-                <a href="https://drive.google.com/drive/folders/1FdWfRL-C2KERTzcV8SeX41123A-mfQkK?usp=drive_link" target="_blank" class="btn-drive">
-                    <i class="fa-brands fa-google-drive"></i> Truy Cập Folder
+                <a href="https://drive.google.com/drive/folders/1FdWfRL-C2KERTzcV8SeX41123A-mfQkK?usp=drive_link" target="_blank" class="btn-preview">
+                    <i class="fa-regular fa-eye"></i> Xem thử
                 </a>
-                <button class="btn-copy" onclick="copyLink('https://drive.google.com/drive/folders/1FdWfRL-C2KERTzcV8SeX41123A-mfQkK?usp=drive_link')" title="Sao chép link Google Drive">
-                    <i class="fa-regular fa-copy"></i>
+                <button class="btn-buy" onclick="openBuyModal('VL08', '200 CÂU HỎI THỰC TẾ & THÍ NGHIỆM – THẦY VŨ ĐÔNG DƯƠNG', '70.000đ')">
+                    <i class="fa-solid fa-cart-shopping"></i> Đặt mua
                 </button>
             
                     </div>
                 </div>
 
-                <div class="card " data-title="bài tập thực tế theo chương – thầy chu văn biên" data-code="vl14">
-                    <div class="card-top">
-                        <span class="badge-code">VL14</span>
-                        <span class="badge-price">150.000đ</span>
+                <div class="doc-item " data-title="bài tập thực tế theo chương – thầy chu văn biên" data-code="vl14">
+                    <div class="doc-id">
+                        <span class="badge">VL14</span>
                     </div>
-                    <div class="card-title">BÀI TẬP THỰC TẾ THEO CHƯƠNG – THẦY CHU VĂN BIÊN</div>
-                    <div class="card-actions">
+                    <div class="doc-info">
+                        <div class="doc-title">BÀI TẬP THỰC TẾ THEO CHƯƠNG – THẦY CHU VĂN BIÊN</div>
+                        <div class="doc-price">Giá: 150.000đ</div>
+                    </div>
+                    <div class="doc-actions">
                         
-                <a href="https://drive.google.com/drive/folders/1q0m6-gPkGxOMufQm1FThsFMMHwSlI9UI?usp=drive_link" target="_blank" class="btn-drive">
-                    <i class="fa-brands fa-google-drive"></i> Truy Cập Folder
+                <a href="https://drive.google.com/drive/folders/1q0m6-gPkGxOMufQm1FThsFMMHwSlI9UI?usp=drive_link" target="_blank" class="btn-preview">
+                    <i class="fa-regular fa-eye"></i> Xem thử
                 </a>
-                <button class="btn-copy" onclick="copyLink('https://drive.google.com/drive/folders/1q0m6-gPkGxOMufQm1FThsFMMHwSlI9UI?usp=drive_link')" title="Sao chép link Google Drive">
-                    <i class="fa-regular fa-copy"></i>
+                <button class="btn-buy" onclick="openBuyModal('VL14', 'BÀI TẬP THỰC TẾ THEO CHƯƠNG – THẦY CHU VĂN BIÊN', '150.000đ')">
+                    <i class="fa-solid fa-cart-shopping"></i> Đặt mua
                 </button>
             
                     </div>
                 </div>
 
-                <div class="card " data-title="bộ câu hỏi mô hình thực tế nâng cao – website thủ khoa đại học" data-code="vl19">
-                    <div class="card-top">
-                        <span class="badge-code">VL19</span>
-                        <span class="badge-price">200.000đ</span>
+                <div class="doc-item " data-title="bộ câu hỏi mô hình thực tế nâng cao – website thủ khoa đại học" data-code="vl19">
+                    <div class="doc-id">
+                        <span class="badge">VL19</span>
                     </div>
-                    <div class="card-title">BỘ CÂU HỎI MÔ HÌNH THỰC TẾ NÂNG CAO – WEBSITE THỦ KHOA ĐẠI HỌC</div>
-                    <div class="card-actions">
+                    <div class="doc-info">
+                        <div class="doc-title">BỘ CÂU HỎI MÔ HÌNH THỰC TẾ NÂNG CAO – WEBSITE THỦ KHOA ĐẠI HỌC</div>
+                        <div class="doc-price">Giá: 200.000đ</div>
+                    </div>
+                    <div class="doc-actions">
                         
-                <a href="https://drive.google.com/drive/folders/19MKoM3HpajmPS3JtHZwyXTkEFTy7arrt?usp=drive_link" target="_blank" class="btn-drive">
-                    <i class="fa-brands fa-google-drive"></i> Truy Cập Folder
+                <a href="https://drive.google.com/drive/folders/19MKoM3HpajmPS3JtHZwyXTkEFTy7arrt?usp=drive_link" target="_blank" class="btn-preview">
+                    <i class="fa-regular fa-eye"></i> Xem thử
                 </a>
-                <button class="btn-copy" onclick="copyLink('https://drive.google.com/drive/folders/19MKoM3HpajmPS3JtHZwyXTkEFTy7arrt?usp=drive_link')" title="Sao chép link Google Drive">
-                    <i class="fa-regular fa-copy"></i>
+                <button class="btn-buy" onclick="openBuyModal('VL19', 'BỘ CÂU HỎI MÔ HÌNH THỰC TẾ NÂNG CAO – WEBSITE THỦ KHOA ĐẠI HỌC', '200.000đ')">
+                    <i class="fa-solid fa-cart-shopping"></i> Đặt mua
                 </button>
             
                     </div>
@@ -1149,170 +1218,187 @@
         </div>
 
         <!-- CATEGORY: TÀI LIỆU TỔNG ÔN & LUYỆN THI THPTQG -->
-        <div class="category-content" data-cat="tong-on-luyen-thi">
+        <div class="category-content " data-cat="tong-on-luyen-thi">
             <div class="section-header">
                 <h2>TÀI LIỆU TỔNG ÔN & LUYỆN THI THPTQG</h2>
-                <p>Danh sách các kho tài liệu chất lượng cao đã chọn lọc</p>
             </div>
-            <div class="grid-container">
+            <div class="doc-list">
 
-                <div class="card " data-title="30 ngày tổng ôn cấp tốc vật lý – thầy vũ ngọc anh" data-code="vl07">
-                    <div class="card-top">
-                        <span class="badge-code">VL07</span>
-                        <span class="badge-price">110.000đ</span>
+                <div class="doc-item " data-title="30 ngày tổng ôn cấp tốc vật lý – thầy vũ ngọc anh" data-code="vl07">
+                    <div class="doc-id">
+                        <span class="badge">VL07</span>
                     </div>
-                    <div class="card-title">30 NGÀY TỔNG ÔN CẤP TỐC VẬT LÝ – THẦY VŨ NGỌC ANH</div>
-                    <div class="card-actions">
+                    <div class="doc-info">
+                        <div class="doc-title">30 NGÀY TỔNG ÔN CẤP TỐC VẬT LÝ – THẦY VŨ NGỌC ANH</div>
+                        <div class="doc-price">Giá: 110.000đ</div>
+                    </div>
+                    <div class="doc-actions">
                         
-                <a href="https://drive.google.com/drive/folders/1Q-amRjhZ9UCToLGa5_s8tVikLNJFDiuJ?usp=drive_link" target="_blank" class="btn-drive">
-                    <i class="fa-brands fa-google-drive"></i> Truy Cập Folder
+                <a href="https://drive.google.com/drive/folders/1Q-amRjhZ9UCToLGa5_s8tVikLNJFDiuJ?usp=drive_link" target="_blank" class="btn-preview">
+                    <i class="fa-regular fa-eye"></i> Xem thử
                 </a>
-                <button class="btn-copy" onclick="copyLink('https://drive.google.com/drive/folders/1Q-amRjhZ9UCToLGa5_s8tVikLNJFDiuJ?usp=drive_link')" title="Sao chép link Google Drive">
-                    <i class="fa-regular fa-copy"></i>
+                <button class="btn-buy" onclick="openBuyModal('VL07', '30 NGÀY TỔNG ÔN CẤP TỐC VẬT LÝ – THẦY VŨ NGỌC ANH', '110.000đ')">
+                    <i class="fa-solid fa-cart-shopping"></i> Đặt mua
                 </button>
             
                     </div>
                 </div>
 
-                <div class="card " data-title="bộ đề trường sở 2026 – website tài liệu chuẩn" data-code="vl16">
-                    <div class="card-top">
-                        <span class="badge-code">VL16</span>
-                        <span class="badge-price">250.000đ</span>
+                <div class="doc-item " data-title="bộ đề trường sở 2026 – website tài liệu chuẩn" data-code="vl16">
+                    <div class="doc-id">
+                        <span class="badge">VL16</span>
                     </div>
-                    <div class="card-title">BỘ ĐỀ TRƯỜNG SỞ 2026 – WEBSITE TÀI LIỆU CHUẨN</div>
-                    <div class="card-actions">
+                    <div class="doc-info">
+                        <div class="doc-title">BỘ ĐỀ TRƯỜNG SỞ 2026 – WEBSITE TÀI LIỆU CHUẨN</div>
+                        <div class="doc-price">Giá: 250.000đ</div>
+                    </div>
+                    <div class="doc-actions">
                         
-                <a href="https://drive.google.com/drive/folders/1TjWcns_H1X7aDouUlGcnJdKjVLWBlOru?usp=drive_link" target="_blank" class="btn-drive">
-                    <i class="fa-brands fa-google-drive"></i> Truy Cập Folder
+                <a href="https://drive.google.com/drive/folders/1TjWcns_H1X7aDouUlGcnJdKjVLWBlOru?usp=drive_link" target="_blank" class="btn-preview">
+                    <i class="fa-regular fa-eye"></i> Xem thử
                 </a>
-                <button class="btn-copy" onclick="copyLink('https://drive.google.com/drive/folders/1TjWcns_H1X7aDouUlGcnJdKjVLWBlOru?usp=drive_link')" title="Sao chép link Google Drive">
-                    <i class="fa-regular fa-copy"></i>
+                <button class="btn-buy" onclick="openBuyModal('VL16', 'BỘ ĐỀ TRƯỜNG SỞ 2026 – WEBSITE TÀI LIỆU CHUẨN', '250.000đ')">
+                    <i class="fa-solid fa-cart-shopping"></i> Đặt mua
                 </button>
             
                     </div>
                 </div>
 
-                <div class="card " data-title="bộ 40 đề luyện thi nâng cao mức độ 9 điểm – website tài liệu chuẩn" data-code="vl17">
-                    <div class="card-top">
-                        <span class="badge-code">VL17</span>
-                        <span class="badge-price">250.000đ</span>
+                <div class="doc-item " data-title="bộ 40 đề luyện thi nâng cao mức độ 9 điểm – website tài liệu chuẩn" data-code="vl17">
+                    <div class="doc-id">
+                        <span class="badge">VL17</span>
                     </div>
-                    <div class="card-title">BỘ 40 ĐỀ LUYỆN THI NÂNG CAO MỨC ĐỘ 9 ĐIỂM – WEBSITE TÀI LIỆU CHUẨN</div>
-                    <div class="card-actions">
+                    <div class="doc-info">
+                        <div class="doc-title">BỘ 40 ĐỀ LUYỆN THI NÂNG CAO MỨC ĐỘ 9 ĐIỂM – WEBSITE TÀI LIỆU CHUẨN</div>
+                        <div class="doc-price">Giá: 250.000đ</div>
+                    </div>
+                    <div class="doc-actions">
                         
-                <a href="https://drive.google.com/drive/folders/1t9EEDoLndg8ECjHl1tbszpvcwpgvSGP3?usp=drive_link" target="_blank" class="btn-drive">
-                    <i class="fa-brands fa-google-drive"></i> Truy Cập Folder
+                <a href="https://drive.google.com/drive/folders/1t9EEDoLndg8ECjHl1tbszpvcwpgvSGP3?usp=drive_link" target="_blank" class="btn-preview">
+                    <i class="fa-regular fa-eye"></i> Xem thử
                 </a>
-                <button class="btn-copy" onclick="copyLink('https://drive.google.com/drive/folders/1t9EEDoLndg8ECjHl1tbszpvcwpgvSGP3?usp=drive_link')" title="Sao chép link Google Drive">
-                    <i class="fa-regular fa-copy"></i>
+                <button class="btn-buy" onclick="openBuyModal('VL17', 'BỘ 40 ĐỀ LUYỆN THI NÂNG CAO MỨC ĐỘ 9 ĐIỂM – WEBSITE TÀI LIỆU CHUẨN', '250.000đ')">
+                    <i class="fa-solid fa-cart-shopping"></i> Đặt mua
                 </button>
             
                     </div>
                 </div>
 
-                <div class="card " data-title="bộ 60+ đề khảo sát chất lượng vật lý 12 – website thủ khoa đại học" data-code="vl19">
-                    <div class="card-top">
-                        <span class="badge-code">VL19</span>
-                        <span class="badge-price">250.000đ</span>
+                <div class="doc-item " data-title="bộ 60+ đề khảo sát chất lượng vật lý 12 – website thủ khoa đại học" data-code="vl19">
+                    <div class="doc-id">
+                        <span class="badge">VL19</span>
                     </div>
-                    <div class="card-title">BỘ 60+ ĐỀ KHẢO SÁT CHẤT LƯỢNG VẬT LÝ 12 – WEBSITE THỦ KHOA ĐẠI HỌC</div>
-                    <div class="card-actions">
+                    <div class="doc-info">
+                        <div class="doc-title">BỘ 60+ ĐỀ KHẢO SÁT CHẤT LƯỢNG VẬT LÝ 12 – WEBSITE THỦ KHOA ĐẠI HỌC</div>
+                        <div class="doc-price">Giá: 250.000đ</div>
+                    </div>
+                    <div class="doc-actions">
                         
-                <a href="https://drive.google.com/drive/folders/1v-6NSxBQwikQCYSZ9gz_0wa6SzYV_9hI?usp=drive_link" target="_blank" class="btn-drive">
-                    <i class="fa-brands fa-google-drive"></i> Truy Cập Folder
+                <a href="https://drive.google.com/drive/folders/1v-6NSxBQwikQCYSZ9gz_0wa6SzYV_9hI?usp=drive_link" target="_blank" class="btn-preview">
+                    <i class="fa-regular fa-eye"></i> Xem thử
                 </a>
-                <button class="btn-copy" onclick="copyLink('https://drive.google.com/drive/folders/1v-6NSxBQwikQCYSZ9gz_0wa6SzYV_9hI?usp=drive_link')" title="Sao chép link Google Drive">
-                    <i class="fa-regular fa-copy"></i>
+                <button class="btn-buy" onclick="openBuyModal('VL19', 'BỘ 60+ ĐỀ KHẢO SÁT CHẤT LƯỢNG VẬT LÝ 12 – WEBSITE THỦ KHOA ĐẠI HỌC', '250.000đ')">
+                    <i class="fa-solid fa-cart-shopping"></i> Đặt mua
                 </button>
             
                     </div>
                 </div>
 
-                <div class="card " data-title="250 đề trường sở 2026 – website thủ khoa đại học" data-code="vl20">
-                    <div class="card-top">
-                        <span class="badge-code">VL20</span>
-                        <span class="badge-price">250.000đ</span>
+                <div class="doc-item " data-title="250 đề trường sở 2026 – website thủ khoa đại học" data-code="vl20">
+                    <div class="doc-id">
+                        <span class="badge">VL20</span>
                     </div>
-                    <div class="card-title">250 ĐỀ TRƯỜNG SỞ 2026 – WEBSITE THỦ KHOA ĐẠI HỌC</div>
-                    <div class="card-actions">
+                    <div class="doc-info">
+                        <div class="doc-title">250 ĐỀ TRƯỜNG SỞ 2026 – WEBSITE THỦ KHOA ĐẠI HỌC</div>
+                        <div class="doc-price">Giá: 250.000đ</div>
+                    </div>
+                    <div class="doc-actions">
                         
-                <a href="https://drive.google.com/drive/folders/15ba_HiqcF8vQ4446SijnNeEzU6QI38Cu?usp=drive_link" target="_blank" class="btn-drive">
-                    <i class="fa-brands fa-google-drive"></i> Truy Cập Folder
+                <a href="https://drive.google.com/drive/folders/15ba_HiqcF8vQ4446SijnNeEzU6QI38Cu?usp=drive_link" target="_blank" class="btn-preview">
+                    <i class="fa-regular fa-eye"></i> Xem thử
                 </a>
-                <button class="btn-copy" onclick="copyLink('https://drive.google.com/drive/folders/15ba_HiqcF8vQ4446SijnNeEzU6QI38Cu?usp=drive_link')" title="Sao chép link Google Drive">
-                    <i class="fa-regular fa-copy"></i>
+                <button class="btn-buy" onclick="openBuyModal('VL20', '250 ĐỀ TRƯỜNG SỞ 2026 – WEBSITE THỦ KHOA ĐẠI HỌC', '250.000đ')">
+                    <i class="fa-solid fa-cart-shopping"></i> Đặt mua
                 </button>
             
                     </div>
                 </div>
 
-                <div class="card " data-title="25 đề thi thử chuẩn form thptqg2026 – thầy hoàng sư điểu" data-code="vl21">
-                    <div class="card-top">
-                        <span class="badge-code">VL21</span>
-                        <span class="badge-price">190.000đ</span>
+                <div class="doc-item " data-title="25 đề thi thử chuẩn form thptqg2026 – thầy hoàng sư điểu" data-code="vl21">
+                    <div class="doc-id">
+                        <span class="badge">VL21</span>
                     </div>
-                    <div class="card-title">25 ĐỀ THI THỬ CHUẨN FORM THPTQG2026 – THẦY HOÀNG SƯ ĐIỂU</div>
-                    <div class="card-actions">
+                    <div class="doc-info">
+                        <div class="doc-title">25 ĐỀ THI THỬ CHUẨN FORM THPTQG2026 – THẦY HOÀNG SƯ ĐIỂU</div>
+                        <div class="doc-price">Giá: 190.000đ</div>
+                    </div>
+                    <div class="doc-actions">
                         
-                <a href="https://drive.google.com/drive/folders/13igCvc77L_1s2EeZuhr6x4zSfntrFI4u?usp=drive_link" target="_blank" class="btn-drive">
-                    <i class="fa-brands fa-google-drive"></i> Truy Cập Folder
+                <a href="https://drive.google.com/drive/folders/13igCvc77L_1s2EeZuhr6x4zSfntrFI4u?usp=drive_link" target="_blank" class="btn-preview">
+                    <i class="fa-regular fa-eye"></i> Xem thử
                 </a>
-                <button class="btn-copy" onclick="copyLink('https://drive.google.com/drive/folders/13igCvc77L_1s2EeZuhr6x4zSfntrFI4u?usp=drive_link')" title="Sao chép link Google Drive">
-                    <i class="fa-regular fa-copy"></i>
+                <button class="btn-buy" onclick="openBuyModal('VL21', '25 ĐỀ THI THỬ CHUẨN FORM THPTQG2026 – THẦY HOÀNG SƯ ĐIỂU', '190.000đ')">
+                    <i class="fa-solid fa-cart-shopping"></i> Đặt mua
                 </button>
             
                     </div>
                 </div>
 
-                <div class="card " data-title="bộ 54 đề tổng ôn thực chiến chuẩn cấu trúc – thái văn thành" data-code="vl22">
-                    <div class="card-top">
-                        <span class="badge-code">VL22</span>
-                        <span class="badge-price">200.000đ</span>
+                <div class="doc-item " data-title="bộ 54 đề tổng ôn thực chiến chuẩn cấu trúc – thái văn thành" data-code="vl22">
+                    <div class="doc-id">
+                        <span class="badge">VL22</span>
                     </div>
-                    <div class="card-title">BỘ 54 ĐỀ TỔNG ÔN THỰC CHIẾN CHUẨN CẤU TRÚC – THÁI VĂN THÀNH</div>
-                    <div class="card-actions">
+                    <div class="doc-info">
+                        <div class="doc-title">BỘ 54 ĐỀ TỔNG ÔN THỰC CHIẾN CHUẨN CẤU TRÚC – THÁI VĂN THÀNH</div>
+                        <div class="doc-price">Giá: 200.000đ</div>
+                    </div>
+                    <div class="doc-actions">
                         
-                <a href="https://drive.google.com/drive/folders/1mjFtcRmp8sEfAfCFYZ10JplM1KuXy5qj?usp=drive_link" target="_blank" class="btn-drive">
-                    <i class="fa-brands fa-google-drive"></i> Truy Cập Folder
+                <a href="https://drive.google.com/drive/folders/1mjFtcRmp8sEfAfCFYZ10JplM1KuXy5qj?usp=drive_link" target="_blank" class="btn-preview">
+                    <i class="fa-regular fa-eye"></i> Xem thử
                 </a>
-                <button class="btn-copy" onclick="copyLink('https://drive.google.com/drive/folders/1mjFtcRmp8sEfAfCFYZ10JplM1KuXy5qj?usp=drive_link')" title="Sao chép link Google Drive">
-                    <i class="fa-regular fa-copy"></i>
+                <button class="btn-buy" onclick="openBuyModal('VL22', 'BỘ 54 ĐỀ TỔNG ÔN THỰC CHIẾN CHUẨN CẤU TRÚC – THÁI VĂN THÀNH', '200.000đ')">
+                    <i class="fa-solid fa-cart-shopping"></i> Đặt mua
                 </button>
             
                     </div>
                 </div>
 
-                <div class="card " data-title="đề thi thử chuẩn cấu trúc 2026 – thái văn thành" data-code="vl23">
-                    <div class="card-top">
-                        <span class="badge-code">VL23</span>
-                        <span class="badge-price">250.000đ</span>
+                <div class="doc-item " data-title="đề thi thử chuẩn cấu trúc 2026 – thái văn thành" data-code="vl23">
+                    <div class="doc-id">
+                        <span class="badge">VL23</span>
                     </div>
-                    <div class="card-title">ĐỀ THI THỬ CHUẨN CẤU TRÚC 2026 – THÁI VĂN THÀNH</div>
-                    <div class="card-actions">
+                    <div class="doc-info">
+                        <div class="doc-title">ĐỀ THI THỬ CHUẨN CẤU TRÚC 2026 – THÁI VĂN THÀNH</div>
+                        <div class="doc-price">Giá: 250.000đ</div>
+                    </div>
+                    <div class="doc-actions">
                         
-                <a href="https://drive.google.com/drive/folders/1bOw2CwjKef61i6QK64Vvu877aXc4Plmy?usp=drive_link" target="_blank" class="btn-drive">
-                    <i class="fa-brands fa-google-drive"></i> Truy Cập Folder
+                <a href="https://drive.google.com/drive/folders/1bOw2CwjKef61i6QK64Vvu877aXc4Plmy?usp=drive_link" target="_blank" class="btn-preview">
+                    <i class="fa-regular fa-eye"></i> Xem thử
                 </a>
-                <button class="btn-copy" onclick="copyLink('https://drive.google.com/drive/folders/1bOw2CwjKef61i6QK64Vvu877aXc4Plmy?usp=drive_link')" title="Sao chép link Google Drive">
-                    <i class="fa-regular fa-copy"></i>
+                <button class="btn-buy" onclick="openBuyModal('VL23', 'ĐỀ THI THỬ CHUẨN CẤU TRÚC 2026 – THÁI VĂN THÀNH', '250.000đ')">
+                    <i class="fa-solid fa-cart-shopping"></i> Đặt mua
                 </button>
             
                     </div>
                 </div>
 
-                <div class="card " data-title="10 đề cơ bản về đích" data-code="vl24">
-                    <div class="card-top">
-                        <span class="badge-code">VL24</span>
-                        <span class="badge-price">112.000đ</span>
+                <div class="doc-item " data-title="10 đề cơ bản về đích" data-code="vl24">
+                    <div class="doc-id">
+                        <span class="badge">VL24</span>
                     </div>
-                    <div class="card-title">10 ĐỀ CƠ BẢN VỀ ĐÍCH</div>
-                    <div class="card-actions">
+                    <div class="doc-info">
+                        <div class="doc-title">10 ĐỀ CƠ BẢN VỀ ĐÍCH</div>
+                        <div class="doc-price">Giá: 112.000đ</div>
+                    </div>
+                    <div class="doc-actions">
                         
-                <a href="https://drive.google.com/drive/folders/1S1rpZvXIhB0pUI-coX_OEzs_WEJDLp9P?usp=drive_link" target="_blank" class="btn-drive">
-                    <i class="fa-brands fa-google-drive"></i> Truy Cập Folder
+                <a href="https://drive.google.com/drive/folders/1S1rpZvXIhB0pUI-coX_OEzs_WEJDLp9P?usp=drive_link" target="_blank" class="btn-preview">
+                    <i class="fa-regular fa-eye"></i> Xem thử
                 </a>
-                <button class="btn-copy" onclick="copyLink('https://drive.google.com/drive/folders/1S1rpZvXIhB0pUI-coX_OEzs_WEJDLp9P?usp=drive_link')" title="Sao chép link Google Drive">
-                    <i class="fa-regular fa-copy"></i>
+                <button class="btn-buy" onclick="openBuyModal('VL24', '10 ĐỀ CƠ BẢN VỀ ĐÍCH', '112.000đ')">
+                    <i class="fa-solid fa-cart-shopping"></i> Đặt mua
                 </button>
             
                     </div>
@@ -1322,21 +1408,24 @@
         </div>
 
         <!-- CATEGORY: POWER POINT & GIÁO ÁN -->
-        <div class="category-content" data-cat="powerpoint-giao-an">
+        <div class="category-content " data-cat="powerpoint-giao-an">
             <div class="section-header">
                 <h2>POWER POINT & GIÁO ÁN</h2>
-                <p>Danh sách các kho tài liệu chất lượng cao đã chọn lọc</p>
             </div>
-            <div class="grid-container">
+            <div class="doc-list">
 
-                <div class="card pending" data-title="power point & giáo án vật lý" data-code="ppt">
-                    <div class="card-top">
-                        <span class="badge-code">PPT</span>
-                        <span class="badge-price">Đang cập nhật...</span>
+                <div class="doc-item pending" data-title="power point & giáo án vật lý" data-code="ppt">
+                    <div class="doc-id">
+                        <span class="badge">PPT</span>
                     </div>
-                    <div class="card-title">POWER POINT & GIÁO ÁN VẬT LÝ</div>
-                    <div class="card-actions">
-                        <button class="btn-drive" style="background: #94a3b8; cursor: not-allowed;"><i class="fa-solid fa-clock"></i> Đang Cập Nhật</button>
+                    <div class="doc-info">
+                        <div class="doc-title">POWER POINT & GIÁO ÁN VẬT LÝ</div>
+                        <div class="doc-price">Giá: Đang cập nhật...</div>
+                    </div>
+                    <div class="doc-actions">
+                        
+                <button class="btn-buy btn-disabled" disabled><i class="fa-solid fa-clock"></i> Cập Nhật...</button>
+            
                     </div>
                 </div>
 
@@ -1356,89 +1445,146 @@
         <p style="margin-top: 6px; font-size: 0.85rem; color: #64748b;">Hệ thống chia sẻ & lưu trữ tài liệu Vật Lý chất lượng cao.</p>
     </footer>
 
-    <!-- TOAST NOTIFICATION -->
-    <div class="toast" id="toast">
-        <i class="fa-solid fa-circle-check"></i>
-        <span>Đã sao chép đường dẫn Google Drive!</span>
+    <!-- PAYMENT MODAL -->
+    <div class="modal-overlay" id="paymentModal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeBuyModal()"><i class="fa-solid fa-xmark"></i></button>
+            <div class="modal-title">Tiến Hành Đặt Mua</div>
+            
+            <div class="doc-summary">
+                Mã tài liệu: <span id="modalDocCode">VL01</span><br>
+                Tên: <span id="modalDocTitle">...</span><br>
+                Giá: <span id="modalDocPrice" style="color: #16a34a; font-size: 1.1rem;">0đ</span>
+            </div>
+
+            <div class="instruction-box">
+                <i class="fa-solid fa-circle-info" style="color: #2563eb; margin-right: 5px;"></i> 
+                <strong>Hướng dẫn thanh toán:</strong><br>
+                1. Quét mã QR bên dưới để chuyển khoản đúng số tiền.<br>
+                2. Nội dung chuyển khoản ghi: <strong>[Mã Tài Liệu] + [SĐT của bạn]</strong>.<br>
+                3. Chụp lại Bill và gửi qua Zalo để nhận quyền truy cập:
+                <span class="zalo-text"><i class="fa-solid fa-comment-sms"></i> Zalo: 0843 589 647</span>
+            </div>
+
+            <img src="my_qr_hihi.jpg" alt="QR Thanh Toán" class="qr-image">
+        </div>
     </div>
 
-    <!-- JAVASCRIPT FOR INTERACTIVITY & CENTER FOCUS -->
+    <!-- JAVASCRIPT FOR INTERACTIVITY -->
     <script>
-        // SWITCH CATEGORY FUNCTION WITH CENTERED FOCUS
+        // SWITCH CATEGORY FUNCTION
         function switchCategory(catId, btnElement) {
             // Update Active Tab Button Styling
             document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
-            btnElement.classList.add('active');
+            if(btnElement) btnElement.classList.add('active');
 
             // Scroll active tab to center of tab container
-            btnElement.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+            if(btnElement) {
+                btnElement.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+            }
 
             // Show/Hide Sections
             const sections = document.querySelectorAll('.category-content');
             sections.forEach(sec => {
-                if (catId === 'all') {
+                if (sec.getAttribute('data-cat') === catId) {
                     sec.style.display = 'block';
+                    // Reset all items display property to empty (so css grid kicks in)
+                    sec.querySelectorAll('.doc-item').forEach(item => item.style.display = '');
+                    // Add animation class
+                    sec.classList.remove('active');
+                    void sec.offsetWidth; // trigger reflow
                     sec.classList.add('active');
                 } else {
-                    if (sec.getAttribute('data-cat') === catId) {
-                        sec.style.display = 'block';
-                        sec.classList.add('active');
-                    } else {
-                        sec.style.display = 'none';
-                        sec.classList.remove('active');
-                    }
+                    sec.style.display = 'none';
+                    sec.classList.remove('active');
                 }
             });
 
-            // Scroll active section to center/top smoothly
-            const mainContainer = document.getElementById('mainContainer');
-            mainContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
-
-            // Re-apply search filter if user typed something
-            filterMaterials();
+            // Scroll main container to top smoothly
+            document.getElementById('mainContainer').scrollIntoView({ behavior: 'smooth', block: 'start' });
+            
+            // Hide no-results just in case
+            document.getElementById('noResults').style.display = 'none';
         }
 
-        // SEARCH FILTER FUNCTION
+        // GLOBAL SEARCH FILTER FUNCTION
         function filterMaterials() {
             const query = document.getElementById('searchInput').value.toLowerCase().trim();
-            const cards = document.querySelectorAll('.card');
-            let visibleCount = 0;
+            const sections = document.querySelectorAll('.category-content');
+            const navWrapper = document.getElementById('navWrapper');
+            let totalVisible = 0;
 
-            cards.forEach(card => {
-                const title = card.getAttribute('data-title') || '';
-                const code = card.getAttribute('data-code') || '';
-                const parentSection = card.closest('.category-content');
+            if (query.length > 0) {
+                // HIDE TABS WHEN SEARCHING
+                navWrapper.style.display = 'none';
 
-                const isSectionVisible = window.getComputedStyle(parentSection).display !== 'none';
+                sections.forEach(sec => {
+                    let sectionHasVisible = false;
+                    const items = sec.querySelectorAll('.doc-item');
+                    items.forEach(item => {
+                        const title = item.getAttribute('data-title');
+                        const code = item.getAttribute('data-code');
 
-                if (isSectionVisible && (title.includes(query) || code.includes(query))) {
-                    card.style.display = 'flex';
-                    visibleCount++;
-                } else {
-                    card.style.display = 'none';
-                }
-            });
+                        if (title.includes(query) || code.includes(query)) {
+                            // Empty string lets CSS media queries handle display:grid vs display:flex
+                            item.style.display = ''; 
+                            sectionHasVisible = true;
+                            totalVisible++;
+                        } else {
+                            item.style.display = 'none';
+                        }
+                    });
 
-            const noResults = document.getElementById('noResults');
-            if (visibleCount === 0) {
-                noResults.style.display = 'block';
+                    // Show section if it has matching items
+                    if (sectionHasVisible) {
+                        sec.style.display = 'block';
+                        sec.classList.add('active'); // apply animation
+                    } else {
+                        sec.style.display = 'none';
+                    }
+                });
             } else {
-                noResults.style.display = 'none';
+                // RESTORE TAB VIEW IF SEARCH IS EMPTY
+                navWrapper.style.display = 'block';
+                const activeTabBtn = document.querySelector('.tab-btn.active');
+                if (activeTabBtn) {
+                    switchCategory(activeTabBtn.getAttribute('data-target'), null);
+                }
+                totalVisible = 1; // Prevent "No results" from showing
             }
+
+            // Toggle No Results Message
+            document.getElementById('noResults').style.display = totalVisible === 0 ? 'block' : 'none';
         }
 
-        // COPY LINK TO CLIPBOARD
-        function copyLink(url) {
-            navigator.clipboard.writeText(url).then(() => {
-                const toast = document.getElementById('toast');
-                toast.classList.add('show');
-                setTimeout(() => {
-                    toast.classList.remove('show');
-                }, 3000);
-            }).catch(err => {
-                console.error('Không thể sao chép: ', err);
-            });
+        // MODAL FUNCTIONS
+        function openBuyModal(code, title, price) {
+            document.getElementById('modalDocCode').innerText = code;
+            document.getElementById('modalDocTitle').innerText = title;
+            document.getElementById('modalDocPrice').innerText = price;
+            
+            const modal = document.getElementById('paymentModal');
+            modal.style.display = 'flex';
+            // slight delay to trigger css transition
+            setTimeout(() => {
+                modal.classList.add('show');
+            }, 10);
         }
+
+        function closeBuyModal() {
+            const modal = document.getElementById('paymentModal');
+            modal.classList.remove('show');
+            setTimeout(() => {
+                modal.style.display = 'none';
+            }, 300);
+        }
+
+        // Close modal when clicking outside of it
+        document.getElementById('paymentModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeBuyModal();
+            }
+        });
     </script>
 </body>
 </html>
