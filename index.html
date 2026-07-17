@@ -1,159 +1,245 @@
 <style>
-  body { 
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; 
-    background-color: #f4f7f6; 
-    color: #333; 
-    line-height: 1.6; 
+  :root {
+    --primary-color: #1a4b84; /* Màu xanh dương đậm chuyên nghiệp */
+    --accent-color: #e74c3c;
+    --bg-color: #f5f7fa;
   }
-  .container {
-    max-width: 900px;
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+    background-color: var(--bg-color);
+    color: #333;
+    margin: 0;
+    padding: 0;
+  }
+  
+  /* Phần Header */
+  .header-banner {
+    background: linear-gradient(135deg, var(--primary-color) 0%, #2980b9 100%);
+    color: white;
+    text-align: center;
+    padding: 40px 20px;
+    border-radius: 0 0 20px 20px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    margin-bottom: 30px;
+  }
+  .header-banner h1 { margin: 0; font-size: 2.2em; text-transform: uppercase; letter-spacing: 1px; }
+  .header-banner p { font-size: 1.1em; opacity: 0.9; margin-top: 10px; }
+
+  /* Thanh Tab điều hướng ngang */
+  .tab-container {
+    max-width: 1100px;
     margin: 0 auto;
+    padding: 0 15px;
+  }
+  .tabs {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 30px;
+  }
+  .tab-btn {
+    background: white;
+    border: 2px solid var(--primary-color);
+    color: var(--primary-color);
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-weight: bold;
+    font-size: 0.9em;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+  }
+  .tab-btn:hover {
+    background: #eaf2f8;
+    transform: translateY(-2px);
+  }
+  .tab-btn.active {
+    background: var(--primary-color);
+    color: white;
+    box-shadow: 0 4px 10px rgba(26, 75, 132, 0.3);
+  }
+
+  /* Nội dung bên trong Tab */
+  .tab-content {
+    display: none;
+    animation: fadeEffect 0.5s;
+  }
+  .tab-content.active {
+    display: block;
+  }
+  @keyframes fadeEffect {
+    from {opacity: 0; transform: translateY(10px);}
+    to {opacity: 1; transform: translateY(0);}
+  }
+
+  /* Thiết kế thẻ Thư mục (Folder) */
+  .folder-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 20px;
+  }
+  .folder-card {
+    background: white;
+    border-left: 6px solid #f39c12;
     padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.06);
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.2s;
   }
-  .header-box { 
-    background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%); 
-    color: white; 
-    padding: 50px 20px; 
-    text-align: center; 
-    border-radius: 12px; 
-    margin-bottom: 40px; 
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1); 
+  .folder-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 15px rgba(0,0,0,0.1);
   }
-  .header-box h1 { margin: 0; font-size: 2.8em; letter-spacing: 1px; }
-  .header-box p { font-size: 1.2em; opacity: 0.9; margin-top: 10px; font-weight: 300; }
-  .folder-card { 
-    background: white; 
-    border-top: 5px solid #2a5298; 
-    padding: 25px; 
-    margin-bottom: 30px; 
-    border-radius: 8px; 
-    box-shadow: 0 2px 10px rgba(0,0,0,0.05); 
+  .folder-icon {
+    font-size: 2.5em;
+    margin-bottom: 10px;
   }
-  .folder-card h2 { 
-    margin-top: 0; 
-    color: #1e3c72; 
-    font-size: 1.6em; 
-    border-bottom: 2px solid #f0f2f5; 
-    padding-bottom: 12px; 
+  .folder-title {
+    font-size: 1.1em;
+    font-weight: bold;
+    color: var(--primary-color);
+    margin-bottom: 8px;
+    line-height: 1.4;
   }
-  .file-item { 
-    display: flex; 
-    align-items: center; 
-    padding: 15px 10px; 
-    border-bottom: 1px dashed #e1e8ed; 
-    transition: background-color 0.2s; 
-    border-radius: 6px;
+  .folder-desc {
+    font-size: 0.9em;
+    color: #666;
+    flex-grow: 1;
+    margin-bottom: 15px;
   }
-  .file-item:hover { background-color: #f8f9fa; }
-  .file-item:last-child { border-bottom: none; }
-  .file-icon { font-size: 1.6em; margin-right: 15px; }
-  .file-link { 
-    text-decoration: none; 
-    color: #0366d6; 
-    font-weight: 600; 
-    font-size: 1.1em; 
-    transition: 0.2s; 
-    flex-grow: 1; 
+  .folder-link {
+    display: inline-block;
+    text-align: center;
+    background: var(--primary-color);
+    color: white;
+    text-decoration: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background 0.3s;
   }
-  .file-link:hover { color: #d73a49; text-decoration: underline; }
-  .badge { 
-    background: #e8f4fd; 
-    color: #0366d6; 
-    padding: 4px 10px; 
-    border-radius: 20px; 
-    font-size: 0.85em; 
-    font-weight: bold; 
+  .folder-link:hover {
+    background: #11345d;
   }
-  .badge-pdf { background: #fde8e8; color: #d73a49; }
+  .empty-tab {
+    text-align: center;
+    padding: 50px;
+    color: #888;
+    font-size: 1.2em;
+    background: white;
+    border-radius: 10px;
+    border: 2px dashed #ccc;
+  }
 </style>
 
-<div class="container">
-  <div class="header-box">
-    <h1>🚀 Kho Tài Liệu Vật Lý 2026</h1>
-    <p>Hệ thống Đề thi thử, Tài liệu giảng dạy & Ôn luyện THPT Quốc Gia</p>
+<div class="header-banner">
+  <h1>📚 KHO TÀI LIỆU VẬT LÝ VIP</h1>
+  <p>Hệ thống Giáo án, Đề thi & Tài liệu ôn thi THPT Quốc Gia (Cập nhật 2026)</p>
+</div>
+
+<div class="tab-container">
+  <!-- Thanh Tabs -->
+  <div class="tabs">
+    <button class="tab-btn" onclick="openTab(event, 'khoi11')">DẠY THÊM KHỐI 11</button>
+    <button class="tab-btn" onclick="openTab(event, 'khoi12')">DẠY THÊM KHỐI 12</button>
+    <button class="tab-btn" onclick="openTab(event, 'khoi10')">DẠY THÊM KHỐI 10</button>
+    <button class="tab-btn active" onclick="openTab(event, 'dethi')">ĐỀ THI & ĐỀ KIỂM TRA</button>
+    <button class="tab-btn" onclick="openTab(event, 'totnghiep')">CHUYÊN LUYỆN TỐT NGHIỆP</button>
+    <button class="tab-btn" onclick="openTab(event, 'lythuyet')">CHUYÊN LUYỆN LÝ THUYẾT & THỰC TẾ</button>
+    <button class="tab-btn" onclick="openTab(event, 'giaoan')">POWER POINT & GIÁO ÁN</button>
   </div>
 
-  <div class="folder-card">
-    <h2>🎯 Đề Phát Triển Từ Đề Minh Họa (VL11)</h2>
-    
-    <div class="file-item">
-      <span class="file-icon">📄</span>
-      <a href="https://drive.google.com/open?id=1tnC3UDaBBbqsBiZP5nQvgqATqk4wmdxN" target="_blank" class="file-link">ĐỀ VIP 2 - Phát Triển Đề Minh Họa</a>
-      <span class="badge">WORD</span>
-    </div>
-    
-    <div class="file-item">
-      <span class="file-icon">📄</span>
-      <a href="https://drive.google.com/open?id=1SmOj6FEP8ojMdO6V9DPK_wRE1OaWQc4-" target="_blank" class="file-link">ĐỀ VIP 3 - Phát Triển Đề Minh Họa</a>
-      <span class="badge">WORD</span>
-    </div>
-
-    <div class="file-item">
-      <span class="file-icon">📄</span>
-      <a href="https://drive.google.com/open?id=1DX4kKwhtCrthHaMPnOiSB8AMOTOWAoDp" target="_blank" class="file-link">ĐỀ VIP 4 - Phát Triển Đề Minh Họa</a>
-      <span class="badge">WORD</span>
-    </div>
-
-    <div class="file-item">
-      <span class="file-icon">📄</span>
-      <a href="https://drive.google.com/open?id=1EffRIM4FB6JG-CchnMm16h6ZTFgT3vui" target="_blank" class="file-link">ĐỀ VIP 5 - Phát Triển Đề Minh Họa</a>
-      <span class="badge">WORD</span>
-    </div>
-    
-    <div class="file-item">
-      <span class="file-icon">📄</span>
-      <a href="https://drive.google.com/open?id=1-8sVs6GkpnJOOGI_dQogUlIZbem0YU4i" target="_blank" class="file-link">ĐỀ VIP 6 - Phát Triển Đề Minh Họa</a>
-      <span class="badge">WORD</span>
-    </div>
+  <!-- Nội dung Tab: KHỐI 11 -->
+  <div id="khoi11" class="tab-content">
+    <div class="empty-tab">⏳ Thư mục Khối 11 đang được cập nhật...</div>
   </div>
 
-  <div class="folder-card">
-    <h2>🏫 Bộ Đề Thi Thử Các Sở & Trường (VL16, VL20)</h2>
-    
-    <div class="file-item">
-      <span class="file-icon">📄</span>
-      <a href="https://drive.google.com/open?id=1D-5ZnvF71odrtck4Sb9zDHcWVN8RgxMe" target="_blank" class="file-link">Sở GD&ĐT Bắc Ninh - Lần 2</a>
-      <span class="badge">WORD</span>
-    </div>
+  <!-- Nội dung Tab: KHỐI 12 -->
+  <div id="khoi12" class="tab-content">
+    <div class="empty-tab">⏳ Thư mục Khối 12 đang được cập nhật...</div>
+  </div>
 
-    <div class="file-item">
-      <span class="file-icon">📄</span>
-      <a href="https://drive.google.com/open?id=1i7O6qWBjrhi8zr7zumJmgUU9D9rmq7So" target="_blank" class="file-link">Sở GD&ĐT Tỉnh Gia Lai</a>
-      <span class="badge">WORD</span>
-    </div>
+  <!-- Nội dung Tab: KHỐI 10 -->
+  <div id="khoi10" class="tab-content">
+    <div class="empty-tab">⏳ Thư mục Khối 10 đang được cập nhật...</div>
+  </div>
 
-    <div class="file-item">
-      <span class="file-icon">📄</span>
-      <a href="https://drive.google.com/open?id=1vdjWEZYNB2cimnIiqfsaBzzPqUuWtz8K" target="_blank" class="file-link">THPT Nguyễn Khuyến & Lê Thánh Tông (TP.HCM) - Lần 5</a>
-      <span class="badge">WORD</span>
-    </div>
-
-    <div class="file-item">
-      <span class="file-icon">📄</span>
-      <a href="https://drive.google.com/open?id=1xmopnLt1G-bSdXIh1SVcxLb_rXOE6Ri7" target="_blank" class="file-link">Đề Ôn THPTQG Số 2 (Luyện thi Cao Trí)</a>
-      <span class="badge">WORD</span>
-    </div>
-
-    <div class="file-item">
-      <span class="file-icon">📄</span>
-      <a href="https://drive.google.com/open?id=1VzNXluPYh1YxUEZovHI6vJnMYvBy-HQy" target="_blank" class="file-link">Đề Dự Đoán TN - Lần 29</a>
-      <span class="badge">WORD</span>
+  <!-- Nội dung Tab: ĐỀ THI & ĐỀ KIỂM TRA -->
+  <div id="dethi" class="tab-content active">
+    <div class="folder-grid">
+      <div class="folder-card">
+        <div class="folder-icon">📁</div>
+        <div class="folder-title">[VL20] BỘ ĐỀ TRƯỜNG SỞ 2026 - THUKHOADAIHOC</div>
+        <div class="folder-desc">Tuyển tập đề thi thử của các trường THPT và các Sở GD&ĐT trên toàn quốc.</div>
+        <a href="https://drive.google.com/drive/folders/1eYf7Ga0ViHpzgpFU4tsZQKYWJJWbk3HZ?usp=drive_link" target="_blank" class="folder-link">Truy cập Thư mục</a>
+      </div>
+      <div class="folder-card">
+        <div class="folder-icon">📁</div>
+        <div class="folder-title">[VL16] BỘ ĐỀ TRƯỜNG SỞ 2026 - TAILIEUCHUAN</div>
+        <div class="folder-desc">Bộ đề bám sát chuẩn cấu trúc mới nhất của Bộ GD&ĐT.</div>
+        <a href="https://drive.google.com/drive/folders/1iTcMmJ_83ZE-DTmVIackU8yamg1MpbBC?usp=drive_link" target="_blank" class="folder-link">Truy cập Thư mục</a>
+      </div>
     </div>
   </div>
 
-  <div class="folder-card">
-    <h2>📚 Tài Liệu Thực Tế & Tổng Ôn Chuyên Sâu</h2>
-    
-    <div class="file-item">
-      <span class="file-icon">📕</span>
-      <a href="https://drive.google.com/open?id=16QUhR6HHokMSGySSV6-vHkJP7eNB3VXX" target="_blank" class="file-link">Bộ Câu Hỏi Thực Tế + Thí Nghiệm Vật Lý 12</a>
-      <span class="badge badge-pdf">PDF</span>
+  <!-- Nội dung Tab: CHUYÊN LUYỆN TỐT NGHIỆP -->
+  <div id="totnghiep" class="tab-content">
+    <div class="folder-grid">
+      <div class="folder-card" style="border-left-color: #2ecc71;">
+        <div class="folder-icon">📂</div>
+        <div class="folder-title">[VL11] 40 ĐỀ PHÁT TRIỂN ĐỀ MINH HỌA CTM</div>
+        <div class="folder-desc">Hệ thống 40 đề VIP phát triển trực tiếp từ đề minh họa, có giải chi tiết.</div>
+        <a href="https://drive.google.com/drive/folders/1iTcMmJ_83ZE-DTmVIackU8yamg1MpbBC?usp=drive_link" target="_blank" class="folder-link">Truy cập Thư mục</a>
+      </div>
+      <div class="folder-card" style="border-left-color: #2ecc71;">
+        <div class="folder-icon">📂</div>
+        <div class="folder-title">[VL22] BỘ 54 ĐỀ TỔNG ÔN THỰC CHIẾN 2026</div>
+        <div class="folder-desc">Biên soạn bởi Thầy Thái Văn Thành - Chuẩn cấu trúc định hướng 2026.</div>
+        <a href="https://drive.google.com/drive/folders/1eYf7Ga0ViHpzgpFU4tsZQKYWJJWbk3HZ?usp=drive_link" target="_blank" class="folder-link">Truy cập Thư mục</a>
+      </div>
     </div>
+  </div>
 
-    <div class="file-item">
-      <span class="file-icon">📕</span>
-      <a href="https://drive.google.com/open?id=1ZdD5U2k80ILLwvmDYFBg4daDFy_I-y2W" target="_blank" class="file-link">Đề Thi Thử Tốt Nghiệp THPT 2026 (Mã B01)</a>
-      <span class="badge badge-pdf">PDF</span>
+  <!-- Nội dung Tab: LÝ THUYẾT & THỰC TẾ -->
+  <div id="lythuyet" class="tab-content">
+    <div class="folder-grid">
+      <div class="folder-card" style="border-left-color: #9b59b6;">
+        <div class="folder-icon">📚</div>
+        <div class="folder-title">[VL08] 200 CÂU HỎI THỰC TẾ & THÍ NGHIỆM</div>
+        <div class="folder-desc">Chuyên đề câu hỏi thực tế và thí nghiệm Vật Lý 12 - Thầy Vũ Đông Dương.</div>
+        <a href="https://drive.google.com/drive/folders/1iTcMmJ_83ZE-DTmVIackU8yamg1MpbBC?usp=drive_link" target="_blank" class="folder-link">Truy cập Thư mục</a>
+      </div>
     </div>
+  </div>
+
+  <!-- Nội dung Tab: POWER POINT -->
+  <div id="giaoan" class="tab-content">
+    <div class="empty-tab">⏳ Thư mục Bài giảng PowerPoint và Giáo án đang được cập nhật...</div>
   </div>
 </div>
+
+<script>
+  // Script xử lý chuyển Tab
+  function openTab(evt, tabId) {
+    var i, tabcontent, tablinks;
+    
+    // Ẩn tất cả nội dung tab
+    tabcontent = document.getElementsByClassName("tab-content");
+    for (i = 0; i < tabcontent.length; i++) {
+      tabcontent[i].classList.remove("active");
+    }
+    
+    // Bỏ trạng thái active của tất cả các nút
+    tablinks = document.getElementsByClassName("tab-btn");
+    for (i = 0; i < tablinks.length; i++) {
+      tablinks[i].classList.remove("active");
+    }
+    
+    // Hiển thị tab được chọn và thêm trạng thái active cho nút đó
+    document.getElementById(tabId).classList.add("active");
+    evt.currentTarget.classList.add("active");
+  }
+</script>
