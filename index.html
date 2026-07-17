@@ -155,16 +155,16 @@
         }
 
         .tabs-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 10px;
-            max-width: 1200px;
-            margin: 0 auto;
-            overflow-x: auto;
-            padding: 4px 8px;
-            scrollbar-width: none;
-        }
+    display: flex;
+    justify-content: flex-start; /* Đổi từ 'center' thành 'flex-start' để không bị lẹm bên trái */
+    align-items: center;
+    gap: 10px;
+    max-width: 1200px;
+    margin: 0 auto;
+    overflow-x: auto;
+    padding: 10px 15px; /* Tăng padding để có khoảng thở cho nút bấm */
+    scrollbar-width: none;
+}
 
         .tabs-container::-webkit-scrollbar {
             display: none;
